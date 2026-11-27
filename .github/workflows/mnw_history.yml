@@ -1,0 +1,54 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Storico MeteoNetwork Val di Luce
+# Lancio a mano. Scarica lo storico giornaliero delle stazioni MeteoNetwork di Val di Luce (CC BY 4.0) in
+# data/mnw_history.json, piano (5 richieste al minuto). Se non finisce, rilanciarlo: riparte dai giorni mancanti.
+on:
+  workflow_dispatch:
+    inputs:
+      from_winter:
+        description: "Inverno più vecchio da provare (anno di dicembre)"
+        default: "2019"
+      max_req:
+        description: "Massimo di richieste in questo giro"
+        default: "1200"
+concurrency:
+  group: mnw-history
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  storico:
+    runs-on: ubuntu-latest
+    timeout-minutes: 340
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Token MeteoNetwork (cache, mai nel repo)
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/mnw_token
+          key: mnw-token-v1
+      - name: Scarica lo storico
+        timeout-minutes: 300
+        continue-on-error: true
+        env:
+          MNW_EMAIL: ${{ secrets.MNW_EMAIL }}
+          MNW_PASSWORD: ${{ secrets.MNW_PASSWORD }}
+          MNW_FROM: ${{ inputs.from_winter }}
+          MNW_MAX_REQ: ${{ inputs.max_req }}
+        run: python pipeline/mnw_history.py
+      - name: Salva lo storico
+        if: always()
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/mnw_history.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "storico MeteoNetwork $(date -u +%F_%H%M)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs && sleep 3; done

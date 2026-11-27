@@ -1,0 +1,33 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Pagella temperature in quota
+# Lancio a mano. Temperature minime e massime di ICON-2I, AROME, ECMWF e ICON-EU contro le stazioni Arpae
+# sopra i 1000 m (Dext3r). Scrive data/hindcast/icon2i_tbias.json.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fattori:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Calcola la pagella
+        continue-on-error: true
+        run: python pipeline/hindcast/icon2i_tbias.py
+      - name: Salva
+        if: always()
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/hindcast/icon2i_tbias.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "pagella temperature $(date -u +%F_%H%M)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs && sleep 3; done

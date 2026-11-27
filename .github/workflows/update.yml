@@ -1,0 +1,257 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Aggiorna previsioni
+
+on:
+  schedule:
+    # giri completi allineati a quando escono i modelli (orari UTC, +1 h in Italia):
+    # 02:05 corsa europea delle 18 e scenari delle 12 · 07:35 europea delle 00 · 10:35 scenari delle 00
+    # 16:35 europea e scenari delle 06 · 19:55 europea delle 12 · 22:35 scenari delle 12
+    - cron: "5 2 * * *"
+    - cron: "35 7 * * *"
+    - cron: "35 10 * * *"
+    - cron: "35 16 * * *"
+    - cron: "55 19 * * *"
+    - cron: "35 22 * * *"
+    # giri leggeri (solo se c'è neve nelle 48 ore): AROME, ICON-2I e motore fisico
+    - cron: "50 4 * * *"
+    - cron: "50 12 * * *"
+    - cron: "50 14 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "full = giro completo, light = solo AROME/ICON-2I e motore, auto = leggero solo se c'è neve nelle 48 ore (lo usa il bot)"
+        default: full
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    outputs:
+      mode: ${{ steps.gate.outputs.go == '0' && 'skip' || steps.mode.outputs.mode }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Giro completo o leggero
+        id: mode
+        run: |
+          if [ "${{ inputs.mode }}" = "light" ]; then
+            echo "mode=light" >> "$GITHUB_OUTPUT"
+          elif [ "${{ inputs.mode }}" = "auto" ]; then
+            if python pipeline/snow48.py; then echo "mode=light" >> "$GITHUB_OUTPUT"; else echo "mode=skip" >> "$GITHUB_OUTPUT"; fi
+          elif [ "${{ github.event_name }}" = "schedule" ] && echo "${{ github.event.schedule }}" | grep -q "^50 "; then
+            if python pipeline/snow48.py; then echo "mode=light" >> "$GITHUB_OUTPUT"; else echo "mode=skip" >> "$GITHUB_OUTPUT"; fi
+          else
+            echo "mode=full" >> "$GITHUB_OUTPUT"
+          fi
+      - if: steps.mode.outputs.mode != 'skip'
+        run: pip install requests jinja2 pillow beautifulsoup4
+      - name: Dati dell'ultimo giro completo (solo giro leggero)
+        if: steps.mode.outputs.mode == 'light'
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw
+          key: raw-none
+          restore-keys: raw-
+      - name: Tracciati dei percorsi (solo quelli nuovi)
+        if: steps.mode.outputs.mode == 'full'
+        run: python pipeline/routes.py
+        timeout-minutes: 20
+        continue-on-error: true
+      - name: Foto delle località (solo quelle nuove)
+        if: steps.mode.outputs.mode == 'full'
+        run: python pipeline/photos.py
+        timeout-minutes: 5
+        continue-on-error: true
+      - name: Scarica i dati dei modelli
+        if: steps.mode.outputs.mode != 'skip'
+        timeout-minutes: 50
+        env:
+          OPEN_METEO_API_KEY: ${{ secrets.OPEN_METEO_API_KEY }}
+          FETCH_ONLY: ${{ steps.mode.outputs.mode == 'light' && 'lam,profile' || '' }}
+        run: rm -f data/raw/LIMITED && python -u pipeline/fetch.py
+      - name: Conserva i dati per i giri leggeri
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw
+          key: raw-${{ github.run_id }}
+      - name: Motore fisico primi 5 giorni (appennino_engine)
+        if: steps.mode.outputs.mode != 'skip'
+        continue-on-error: true
+        timeout-minutes: 30
+        working-directory: pipeline
+        env:
+          OPEN_METEO_API_KEY: ${{ secrets.OPEN_METEO_API_KEY }}
+        run: python -u fetch_and_run.py --giorni 5 --out ../data/raw/engine.json --grezzi ../data/raw/engine_raw.json
+      - name: Raffiche sul punto di vetta (ombra, uso interno)
+        if: steps.mode.outputs.mode != 'skip'
+        continue-on-error: true
+        timeout-minutes: 6
+        working-directory: pipeline
+        env:
+          OPEN_METEO_API_KEY: ${{ secrets.OPEN_METEO_API_KEY }}
+        run: python -u raffiche_vetta.py 5
+      - name: Quadro generale (NAO, AO, vortice polare)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/teleconn.py
+      - name: Sponsor venduti con Stripe
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        env:
+          STRIPE_API_KEY: ${{ secrets.STRIPE_API_KEY }}
+        run: python pipeline/shop.py
+        continue-on-error: true
+      - name: Stato impianti dai siti ufficiali
+        if: steps.mode.outputs.mode != 'skip'
+        continue-on-error: true
+        timeout-minutes: 3
+        run: python pipeline/lifts.py
+      - name: Eventi dagli open data ufficiali
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/events.py
+      - name: Rifugi e strutture da OpenStreetMap (settimanale)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/places.py
+      - name: Bollettino Montagna LaMMA (controllo dei meteorologi)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/pro.py
+      - name: Storico stagioni 1 dic - 31 mar (rianalisi ERA5)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/climate.py
+      - name: Segnalazioni dal territorio (archivio)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/reports.py
+      - name: Pericolo valanghe (Meteomont)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode == 'full'
+        continue-on-error: true
+        run: python pipeline/avalanche.py
+      - name: Neve al suolo misurata (stazioni Arpae)
+        timeout-minutes: 6
+        if: steps.mode.outputs.mode != 'skip'  # anche nei giri leggeri: servono ai controlli dal vivo senza computer
+        continue-on-error: true
+        run: python pipeline/snowobs.py
+      - name: Token MeteoNetwork (cache, mai nel repo)
+        id: mnwtok
+        if: steps.mode.outputs.mode != 'skip'
+        uses: actions/cache/restore@v4
+        with:
+          path: data/raw/mnw_token
+          key: mnw-token-v1
+      - name: Stazioni MeteoNetwork di Val di Luce
+        timeout-minutes: 3
+        if: steps.mode.outputs.mode != 'skip'
+        continue-on-error: true
+        env:
+          MNW_EMAIL: ${{ secrets.MNW_EMAIL }}
+          MNW_PASSWORD: ${{ secrets.MNW_PASSWORD }}
+        run: python pipeline/mnw.py
+      - name: Conserva il token MeteoNetwork
+        if: steps.mode.outputs.mode != 'skip' && steps.mnwtok.outputs.cache-hit != 'true' && hashFiles('data/raw/mnw_token') != ''
+        continue-on-error: true
+        uses: actions/cache/save@v4
+        with:
+          path: data/raw/mnw_token
+          key: mnw-token-v1
+      - name: Dati completi? (con il limite Open-Meteo superato non si pubblica)
+        id: gate
+        if: steps.mode.outputs.mode != 'skip'
+        run: |
+          if [ -f data/raw/LIMITED ]; then
+            cat data/raw/LIMITED
+            echo "Limite Open-Meteo superato: il sito resta all'ultima versione completa"
+            echo "go=0" >> "$GITHUB_OUTPUT"
+          else
+            echo "go=1" >> "$GITHUB_OUTPUT"
+          fi
+      - name: Costruisci il sito
+        if: steps.mode.outputs.mode != 'skip' && steps.gate.outputs.go != '0'
+        run: cd pipeline && python build.py
+      - name: Newsletter e allerta neve
+        if: steps.mode.outputs.mode != 'skip' && steps.gate.outputs.go != '0'
+        continue-on-error: true
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+          BREVO_LIST_ID: ${{ secrets.BREVO_LIST_ID }}
+          SENDER_EMAIL: ${{ secrets.SENDER_EMAIL }}
+        run: python pipeline/newsletter.py
+      - name: Canale Telegram
+        if: steps.mode.outputs.mode != 'skip' && steps.gate.outputs.go != '0'
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python pipeline/telegram.py
+      - name: Sentinella delle tendenze (avvisa Enrico se gli scenari cambiano il quadro)
+        if: steps.mode.outputs.mode != 'skip' && steps.gate.outputs.go != '0'
+        continue-on-error: true
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python pipeline/trend_watch.py
+      - name: Salva lo stato degli invii
+        if: steps.mode.outputs.mode != 'skip'
+        continue-on-error: true  # se il salvataggio fallisce il sito va comunque online
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/photos data/state.json data/latest.json data/routes data/shop_state.json data/sponsors_sold.json 2>/dev/null || true
+          git add data/lifts.json
+          git add data/reports.json 2>/dev/null || true
+          git add data/seasons.json 2>/dev/null || true
+          git add data/teleconn.json data/calib.json 2>/dev/null || true
+          git add data/pro.json 2>/dev/null || true
+          git add data/articles 2>/dev/null || true
+          git add data/avalanche.json 2>/dev/null || true
+          git add data/obs_temp.json data/snowobs.json data/precip_archive.json 2>/dev/null || true
+          git add data/obs_mnw.json data/obs_arpae.json 2>/dev/null || true
+          git add data/shadow.json data/obs_snowline.json data/shadow_scores.json data/trend_shadow.json data/trend_archive.json 2>/dev/null || true
+          git add data/finestre_ombra.json 2>/dev/null || true
+          git add data/trend_watch.json 2>/dev/null || true
+          git add data/places.json 2>/dev/null || true
+          git add data/history.json data/verify.json 2>/dev/null || true
+          git add data/snowobs.json 2>/dev/null || true
+          git add data/events.json 2>/dev/null || true
+          git add data/state.json data/latest.json data/routes data/photos 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "stato $(date -u +%F_%H%M)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs && sleep 3; done
+      # Dal 24/11: il codice va in privato, il sito generato si pubblica nel repo pubblico Enricom87/crinale-sito
+      # (GitHub Pages dal ramo gh-pages, dominio crinaleappennino.it). 
+      - name: Pubblica il sito nel repo pubblico
+        if: steps.mode.outputs.mode != 'skip' && steps.gate.outputs.go != '0' && env.PUB_TOKEN != ''
+        run: |
+          rm -rf /tmp/pub && cp -r site /tmp/pub && cd /tmp/pub
+          touch .nojekyll
+          git init -q -b main
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add -A
+          git commit -qm "sito $(date -u +%F_%H%M)"
+          git push -q -f "https://x-access-token:${PUB_TOKEN}@github.com/Enricom87/crinale-sito.git" main:gh-pages

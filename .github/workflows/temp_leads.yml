@@ -1,0 +1,33 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Pagella temperature per anticipo
+# Lancio a mano. Minime e massime previste 3, 5, 7 e 9 giorni prima da ECMWF, AIFS, GFS, ICON, UKMO e GEM
+# contro le stazioni Arpae sopra i 1000 m. Scrive data/hindcast/temp_leads.json.
+on:
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  fattori:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Calcola la pagella
+        continue-on-error: true
+        run: python pipeline/hindcast/temp_leads.py
+      - name: Salva
+        if: always()
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/hindcast/temp_leads.json 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "pagella temperature per anticipo $(date -u +%F_%H%M)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs && sleep 3; done

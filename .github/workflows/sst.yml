@@ -1,0 +1,33 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Storico (mare Tirreno)
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "17 5 * * 1"
+
+permissions:
+  contents: write
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python -u pipeline/hindcast/sst.py
+      - name: Salva
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "bot@crinaleappennino.it"
+          git add data/hindcast/sst_tirreno.csv
+          git commit -m "storico: temperatura del Tirreno" || exit 0
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 10; done

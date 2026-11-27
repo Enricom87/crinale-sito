@@ -1,0 +1,49 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Modelli ad alta risoluzione dalla fonte (in ombra)
+# Ogni ora alle :40, più a mano. ICON-2I RUC, AROME, ICON-CH1, MOLOCH e WRF scaricati direttamente dalla fonte
+# (dati aperti, licenze in pipeline/lam_direct.py) sui nostri punti. Non tocca il sito né il motore.
+on:
+  schedule:
+    - cron: "40 * * * *"
+  workflow_dispatch:
+    inputs:
+      modelli:
+        description: "Modelli separati da spazio (vuoto = tutti)"
+        required: false
+        default: ""
+permissions:
+  contents: write
+jobs:
+  scarica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    concurrency:
+      group: lam-direct-${{ matrix.model }}
+      cancel-in-progress: false
+    strategy:
+      fail-fast: false
+      max-parallel: 5
+      matrix:
+        model: [icon2i_ruc, arome, icon_ch1, moloch]  # wrf tolto il 27/11: server a ~34 kB/s, mai riuscito
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests eccodes numpy
+      - name: Scarica
+        if: ${{ github.event.inputs.modelli == '' || github.event.inputs.modelli == null || contains(github.event.inputs.modelli, matrix.model) }}
+        timeout-minutes: 40
+        run: python -u pipeline/lam_direct.py ${{ matrix.model }}
+      - name: Salva
+        if: always()
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/lam_direct/ 2>/dev/null || true
+          git diff --cached --quiet || git commit -m "${{ matrix.model }} dalla fonte $(date -u +%F_%H%M)"
+          for i in 1 2 3 4 5; do git push && break; git pull --rebase -X theirs && sleep $((RANDOM % 7 + 2)); done

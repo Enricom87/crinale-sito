@@ -1,0 +1,39 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Audit del sito
+# Ogni 3 ore (e a mano): controlla il sito pubblicato e, se trova problemi, scrive a Enrico sul bot Telegram.
+# Vedi pipeline/audit.py. Non corregge niente da solo.
+on:
+  schedule:
+    - cron: "17 */3 * * *"
+  workflow_dispatch:
+concurrency:
+  group: audit
+  cancel-in-progress: false
+permissions:
+  contents: write
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - name: Controlla il sito
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+        run: python pipeline/audit.py
+      - name: Salva
+        if: always()
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/audit.json
+          git diff --cached --quiet || git commit -m "Audit $(date -u +%F_%H%M)"
+          for i in 1 2 3; do git push && break; git pull --rebase -X theirs && sleep 3; done

@@ -1,0 +1,37 @@
+# Gira nel repo pubblico crinale-sito (minuti gratis) con il codice del repo privato crinaleappennino.
+# Copia di .github/workflows del repo privato (tools/public_workflows): modificare l'originale nel repo privato.
+name: Storico (fattibilità)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: hindcast
+  cancel-in-progress: false
+
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: Enricom87/crinaleappennino
+          token: ${{ secrets.SRC_TOKEN }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install requests
+      - run: python -u pipeline/hindcast/probe.py
+        timeout-minutes: 100
+        continue-on-error: true
+      - name: Salva il risultato
+        run: |
+          git config user.name "crinale-bot"
+          git config user.email "bot@crinaleappennino.it"
+          git add data/hindcast/probe.json
+          git commit -m "storico: verifica fattibilità" || exit 0
+          for i in 1 2 3; do git pull --rebase && git push && break; sleep 10; done
