@@ -1,0 +1,39 @@
+{
+ "name": "Crinale · neve e meteo in quota",
+ "short_name": "Crinale",
+ "description": "Previsioni neve sull'Appennino tosco-emiliano, quota per quota",
+ "lang": "it",
+ "start_url": "./",
+ "scope": "./",
+ "display": "standalone",
+ "background_color": "#f6f9fb",
+ "theme_color": "#0f2236",
+ "icons": [
+  {
+   "src": "static/icon-192.png",
+   "sizes": "192x192",
+   "type": "image/png"
+  },
+  {
+   "src": "static/icon-512.png",
+   "sizes": "512x512",
+   "type": "image/png"
+  },
+  {
+   "src": "static/icon-maskable-512.png",
+   "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "maskable"
+  }
+ ],
+ "shortcuts": [
+  {
+   "name": "Percorsi",
+   "url": "percorsi/"
+  },
+  {
+   "name": "Allerta neve",
+   "url": "newsletter/"
+  }
+ ]
+}

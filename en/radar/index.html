@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Radar and next hours on the ridge · Crinale</title>
+<meta name="description" content="Civil Protection weather radar over the Tuscan-Emilian Apennines, updated every 5 minutes, with the snow and rain expected in the next hours at the base and summit of each resort.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crinale">
+<meta property="og:title" content="Radar and next hours on the ridge · Crinale">
+<meta property="og:description" content="Civil Protection weather radar over the Tuscan-Emilian Apennines, updated every 5 minutes, with the snow and rain expected in the next hours at the base and summit of each resort.">
+<meta property="og:url" content="https://crinaleappennino.it/en/radar/">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://crinaleappennino.it/static/photos/gomito-selletta.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+<link rel="preload" href="../../static/fonts/pjs-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../static/fonts/pjs-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../static/style.css?v=b6f59caa">
+<link rel="alternate" type="application/rss+xml" title="Crinale" href="../../feed.xml">
+<link rel="icon" href="../../static/brand/mark.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="it" href="https://crinaleappennino.it/radar/">
+<link rel="alternate" hreflang="en" href="https://crinaleappennino.it/en/radar/">
+<link rel="alternate" hreflang="de" href="https://crinaleappennino.it/de/radar/">
+<link rel="alternate" hreflang="fr" href="https://crinaleappennino.it/fr/radar/">
+<link rel="alternate" hreflang="es" href="https://crinaleappennino.it/es/radar/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crinaleappennino.it/zh/radar/">
+<link rel="alternate" hreflang="x-default" href="https://crinaleappennino.it/radar/">
+<link rel="canonical" href="https://crinaleappennino.it/en/radar/">
+<link rel="manifest" href="../../manifest.webmanifest">
+<meta name="theme-color" content="#0f2236">
+<link rel="apple-touch-icon" href="../../static/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Crinale">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <g id="g-cloud"><circle cx="24" cy="34" r="11"/><circle cx="36" cy="28" r="13"/><circle cx="46" cy="36" r="9"/><rect x="18" y="34" width="34" height="11" rx="5.5"/></g>
+    <g id="g-flake" stroke-width="2.2" stroke-linecap="round"><path d="M0 -5V5M-4.3 -2.5L4.3 2.5M-4.3 2.5L4.3 -2.5"/></g>
+  </defs>
+  <symbol id="ic-sun" viewBox="0 0 64 64"><g stroke="#f5a623" stroke-width="4" stroke-linecap="round"><path d="M32 6v7M32 51v7M6 32h7M51 32h7M13.6 13.6l5 5M45.4 45.4l5 5M13.6 50.4l5-5M45.4 18.6l5-5"/></g><circle cx="32" cy="32" r="12" fill="#ffc83d"/></symbol>
+  <symbol id="ic-sun-cold" viewBox="0 0 64 64"><g stroke="#7cc4f2" stroke-width="4" stroke-linecap="round"><path d="M32 6v7M32 51v7M6 32h7M51 32h7M13.6 13.6l5 5M45.4 45.4l5 5M13.6 50.4l5-5M45.4 18.6l5-5"/></g><circle cx="32" cy="32" r="12" fill="#ffd45e"/></symbol>
+  <symbol id="ic-partly" viewBox="0 0 64 64"><g stroke="#f5a623" stroke-width="3.5" stroke-linecap="round"><path d="M24 6v6M8 22h6M12.7 10.7l4 4M35.3 10.7l-4 4"/></g><circle cx="24" cy="24" r="10" fill="#ffc83d"/><use href="#g-cloud" fill="#dfe8f0" stroke="#b9c8d6" stroke-width="1" transform="translate(2 6)"/></symbol>
+  <symbol id="ic-cloud" viewBox="0 0 64 64"><use href="#g-cloud" fill="#c9d6e2" transform="translate(-3 -2)"/></symbol>
+  <symbol id="ic-showers" viewBox="0 0 64 64"><g stroke="#f5a623" stroke-width="3" stroke-linecap="round"><path d="M22 4v5M8 18h5M12 8l3.5 3.5"/></g><circle cx="22" cy="19" r="8" fill="#ffc83d"/><use href="#g-cloud" fill="#c9d6e2" transform="translate(0 -4)"/><g stroke="#3d8fd6" stroke-width="3" stroke-linecap="round"><path d="M28 48l-3 7M40 48l-3 7"/></g></symbol>
+  <symbol id="ic-rain" viewBox="0 0 64 64"><use href="#g-cloud" fill="#9fb0c1" transform="translate(-3 -8)"/><g stroke="#2f7fd0" stroke-width="3" stroke-linecap="round"><path d="M22 44l-3 8M32 44l-3 8M42 44l-3 8M27 54l-2 5M37 54l-2 5"/></g></symbol>
+  <symbol id="ic-storm" viewBox="0 0 64 64"><use href="#g-cloud" fill="#7d8ea0" transform="translate(-3 -8)"/><path d="M34 38l-9 13h7l-4 11 12-15h-7l5-9z" fill="#ffcc2e" stroke="#e0a800" stroke-width="1"/><g stroke="#2f7fd0" stroke-width="3" stroke-linecap="round"><path d="M20 44l-2 6M46 44l-2 6"/></g></symbol>
+  <symbol id="ic-snow" viewBox="0 0 64 64"><use href="#g-cloud" fill="#d3dfea" transform="translate(-3 -8)"/><g stroke="#4aa3e0"><use href="#g-flake" transform="translate(24 50)"/><use href="#g-flake" transform="translate(40 50)"/></g></symbol>
+  <symbol id="ic-snow-heavy" viewBox="0 0 64 64"><use href="#g-cloud" fill="#b9cad9" transform="translate(-3 -10)"/><g stroke="#2f8fd8"><use href="#g-flake" transform="translate(18 46)"/><use href="#g-flake" transform="translate(32 46)"/><use href="#g-flake" transform="translate(46 46)"/><use href="#g-flake" transform="translate(25 57)"/><use href="#g-flake" transform="translate(39 57)"/></g></symbol>
+  <symbol id="ic-wind" viewBox="0 0 64 64"><g fill="none" stroke="#6f8aa3" stroke-width="4" stroke-linecap="round"><path d="M8 24h30a7 7 0 1 0-7-7"/><path d="M8 34h42a7 7 0 1 1-7 7"/><path d="M8 44h20"/></g></symbol>
+  <symbol id="ic-moon" viewBox="0 0 64 64"><path d="M40 12a20 20 0 1 0 14 30 17 17 0 0 1-14-30z" fill="#ffe08a" stroke="#e8c45a" stroke-width="1.5"/></symbol>
+  <symbol id="ic-moon-cloud" viewBox="0 0 64 64"><path d="M30 6a14 14 0 1 0 12 21 12 12 0 0 1-12-21z" fill="#ffe08a" stroke="#e8c45a" stroke-width="1.2"/><use href="#g-cloud" fill="#dfe8f0" stroke="#b9c8d6" stroke-width="1" transform="translate(2 6)"/></symbol>
+</svg>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="../../en/"><img src="../../static/brand/mark.svg" alt="" width="36" height="36"><span class="brand-txt"><b>Crinale</b><small>APPENNINO</small></span></a>
+    <nav>
+      <a href="../../en/#localita">Resorts</a>
+      <a href="../../en/tendenze/">Trends</a>
+      <a href="../../en/radar/">Radar</a>
+      <a href="../../en/percorsi/">Routes</a>
+      <a href="../../en/newsletter/">Snow alerts</a>
+      <a href="../../en/metodo/">How it works</a>
+      <a href="../../en/app/">App</a>
+      <a href="../../en/sponsor/" class="cta">Become a sponsor</a>
+      <a class="tg-ico" href="https://t.me/crinaleappennino" rel="noopener" aria-label="Telegram channel" title="Telegram channel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg><span>Telegram</span></a>
+      <details class="langs"><summary aria-label="Language">🌐 EN</summary><div><a href="../../radar/" hreflang="it" lang="it">Italiano</a><a href="../../en/radar/" hreflang="en" lang="en" aria-current="true">English</a><a href="../../de/radar/" hreflang="de" lang="de">Deutsch</a><a href="../../fr/radar/" hreflang="fr" lang="fr">Français</a><a href="../../es/radar/" hreflang="es" lang="es">Español</a><a href="../../zh/radar/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+    </nav>
+  </div>
+</header>
+<div class="appbar" id="appbar" hidden>
+  <div class="wrap appbar-in">
+    <img src="../../static/brand/mark.svg" alt="" width="36" height="36">
+    <a class="appbar-txt" href="../../en/app/">
+      <strong>📲 Get the Crinale app</strong>
+      <small class="ab-short ab-ios">Tap <b>Share</b> ⬆️ then <b>Add to Home Screen</b></small>
+      <small class="ab-short ab-android">Chrome's ⋮ menu → <b>Install app</b></small>
+      <small class="ab-short ab-inapp">Open the site in Safari or Chrome to install it</small>
+    </a>
+    <button class="btn small" id="install-btn" hidden>Install</button>
+    <button class="ab-close" id="appbar-close" aria-label="Close">×</button>
+  </div>
+</div>
+
+<main>
+
+<section class="hero small"><div class="wrap">
+  <h1>📡 Radar and next hours</h1>
+  <p class="lead">Where it is raining or snowing right now, the last hour in motion, and what to expect in the next 3-6 hours at each resort.</p>
+</div></section>
+
+<section class="wrap">
+  <div class="radar-box">
+    <div id="radar" class="radar-map" aria-label="Radar map"></div>
+    <div class="radar-bar">
+      <button id="rplay" type="button" aria-label="Play or pause">⏸</button>
+      <input id="rslide" type="range" min="0" max="11" value="11" aria-label="Time">
+      <span id="rtime" class="radar-time">…</span>
+    </div>
+    <p class="small radar-note" id="rmsg">Radar sees precipitation, not whether it is rain or snow: for that, check the snow level in the cards below.</p>
+    <p class="small">Surface precipitation intensity estimated from radar and rain gauges (SRI product), every 5 minutes. Data: <a href="https://radar.protezionecivile.it/" rel="noopener">Radar-DPC, Dipartimento della Protezione Civile</a> (<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.it" rel="noopener">CC BY-SA 4.0</a>).</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>⏱️ Next hours, resort by resort</h2>
+  <p class="small">From the 28/11/2026 16:04 calculation, with the high-resolution AROME and ICON-2I models.</p>
+  <div class="nc-grid">
+  
+    <a class="nc" href="../../en/abetone/">
+      <b>Abetone</b>
+      
+      <div class="nc-row"><span>🏔️ 1892 m</span>
+        <span>☁️ dry · -4°</span></div>
+      
+      <div class="nc-row"><span>🏠 1388 m</span>
+        <span>☁️ dry · 0°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/cimone/">
+      <b>Cimone</b>
+      
+      <div class="nc-row"><span>🏔️ 2165 m</span>
+        <span>☁️ dry · -6°</span></div>
+      
+      <div class="nc-row"><span>🏠 1500 m</span>
+        <span>☁️ dry · -2°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/le-polle/">
+      <b>Le Polle</b>
+      
+      <div class="nc-row"><span>🏔️ 2165 m</span>
+        <span>☁️ dry · -6°</span></div>
+      
+      <div class="nc-row"><span>🏠 1300 m</span>
+        <span>☁️ dry · 0°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/cimoncino/">
+      <b>Cimoncino</b>
+      
+      <div class="nc-row"><span>🏔️ 2165 m</span>
+        <span>☁️ dry · -6°</span></div>
+      
+      <div class="nc-row"><span>🏠 1400 m</span>
+        <span>☁️ dry · -2°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/doganaccia/">
+      <b>Doganaccia</b>
+      
+      <div class="nc-row"><span>🏔️ 1716 m</span>
+        <span>☁️ dry · -4°</span></div>
+      
+      <div class="nc-row"><span>🏠 1540 m</span>
+        <span>☁️ dry · -3°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/corno-alle-scale/">
+      <b>Corno alle Scale</b>
+      
+      <div class="nc-row"><span>🏔️ 1945 m</span>
+        <span>☁️ dry · -6°</span></div>
+      
+      <div class="nc-row"><span>🏠 1422 m</span>
+        <span>☁️ dry · -2°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/lago-scaffaiolo/">
+      <b>Lago Scaffaiolo</b>
+      
+      <div class="nc-row"><span>🏔️ 1775 m</span>
+        <span>☁️ dry · -5°</span></div>
+      
+      <div class="nc-row"><span>🏠 1775 m</span>
+        <span>☁️ dry · -5°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/lago-santo/">
+      <b>Lago Santo</b>
+      
+      <div class="nc-row"><span>🏔️ 1991 m</span>
+        <span>☁️ dry · -5°</span></div>
+      
+      <div class="nc-row"><span>🏠 1501 m</span>
+        <span>☁️ dry · -2°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/garfagnana/">
+      <b>Garfagnana</b>
+      
+      <div class="nc-row"><span>🏔️ 2054 m</span>
+        <span>☁️ dry · -5°</span></div>
+      
+      <div class="nc-row"><span>🏠 1314 m</span>
+        <span>☁️ dry · 0°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/cerreto-laghi/">
+      <b>Cerreto Laghi</b>
+      
+      <div class="nc-row"><span>🏔️ 1894 m</span>
+        <span>☁️ dry · -4°</span></div>
+      
+      <div class="nc-row"><span>🏠 1340 m</span>
+        <span>☁️ dry · -1°</span></div>
+      
+    </a>
+  
+    <a class="nc" href="../../en/febbio/">
+      <b>Febbio</b>
+      
+      <div class="nc-row"><span>🏔️ 2121 m</span>
+        <span>☁️ dry · -6°</span></div>
+      
+      <div class="nc-row"><span>🏠 1150 m</span>
+        <span>☁️ dry · 0°</span></div>
+      
+    </a>
+  
+  </div>
+</section>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+<script>
+(function () {
+  const pts = [{"lat": 44.145, "lon": 10.663, "low": {"elev": 1388, "h3": {"rain": 0, "snow": 0.0, "t": -0.5}, "h6": {"rain": 0, "snow": 0.0, "t": -0.5}, "name": "Passo dell\u0027Abetone"}, "name": "Abetone", "slug": "abetone", "top": {"elev": 1892, "h3": {"rain": 0, "snow": 0.0, "t": -4.0}, "h6": {"rain": 0, "snow": 0.0, "t": -4.0}, "name": "Monte Gomito"}}, {"lat": 44.211, "lon": 10.7249, "low": {"elev": 1500, "h3": {"rain": 0, "snow": 0.0, "t": -2.5}, "h6": {"rain": 0, "snow": 0.0, "t": -2.5}, "name": "Lago della Ninfa"}, "name": "Cimone", "slug": "cimone", "top": {"elev": 2165, "h3": {"rain": 0, "snow": 0.0, "t": -6.0}, "h6": {"rain": 0, "snow": 0.0, "t": -6.0}, "name": "Monte Cimone"}}, {"lat": 44.2171, "lon": 10.6913, "low": {"elev": 1300, "h3": {"rain": 0, "snow": 0.0, "t": 0.1}, "h6": {"rain": 0, "snow": 0.0, "t": 0.1}, "name": "Le Polle"}, "name": "Le Polle", "slug": "le-polle", "top": {"elev": 2165, "h3": {"rain": 0, "snow": 0.0, "t": -6.0}, "h6": {"rain": 0, "snow": 0.0, "t": -6.0}, "name": "Monte Cimone"}}, {"lat": 44.1983, "lon": 10.7312, "low": {"elev": 1400, "h3": {"rain": 0, "snow": 0.0, "t": -1.9}, "h6": {"rain": 0, "snow": 0.0, "t": -1.9}, "name": "Cimoncino"}, "name": "Cimoncino", "slug": "cimoncino", "top": {"elev": 2165, "h3": {"rain": 0, "snow": 0.0, "t": -6.0}, "h6": {"rain": 0, "snow": 0.0, "t": -6.0}, "name": "Monte Cimone"}}, {"lat": 44.122, "lon": 10.7758, "low": {"elev": 1540, "h3": {"rain": 0, "snow": 0.0, "t": -2.6}, "h6": {"rain": 0, "snow": 0.0, "t": -2.6}, "name": "Doganaccia"}, "name": "Doganaccia", "slug": "doganaccia", "top": {"elev": 1716, "h3": {"rain": 0, "snow": 0.0, "t": -4.4}, "h6": {"rain": 0, "snow": 0.0, "t": -4.4}, "name": "Croce Arcana"}}, {"lat": 44.1316, "lon": 10.8119, "low": {"elev": 1422, "h3": {"rain": 0, "snow": 0.0, "t": -2.1}, "h6": {"rain": 0, "snow": 0.0, "t": -2.1}, "name": "Cavone"}, "name": "Corno alle Scale", "slug": "corno-alle-scale", "top": {"elev": 1945, "h3": {"rain": 0, "snow": 0.0, "t": -5.7}, "h6": {"rain": 0, "snow": 0.0, "t": -5.7}, "name": "Corno alle Scale"}}, {"lat": 44.1186, "lon": 10.8077, "low": {"elev": 1775, "h3": {"rain": 0, "snow": 0.0, "t": -4.7}, "h6": {"rain": 0, "snow": 0.0, "t": -4.7}, "name": "Lago Scaffaiolo"}, "name": "Lago Scaffaiolo", "slug": "lago-scaffaiolo", "top": {"elev": 1775, "h3": {"rain": 0, "snow": 0.0, "t": -4.7}, "h6": {"rain": 0, "snow": 0.0, "t": -4.7}, "name": "Lago Scaffaiolo"}}, {"lat": 44.1372, "lon": 10.5843, "low": {"elev": 1501, "h3": {"rain": 0, "snow": 0.0, "t": -2.2}, "h6": {"rain": 0, "snow": 0.0, "t": -2.2}, "name": "Lago Santo modenese"}, "name": "Lago Santo", "slug": "lago-santo", "top": {"elev": 1991, "h3": {"rain": 0, "snow": 0.0, "t": -5.2}, "h6": {"rain": 0, "snow": 0.0, "t": -5.2}, "name": "Monte Giovo"}}, {"lat": 44.2125, "lon": 10.4453, "low": {"elev": 1314, "h3": {"rain": 0, "snow": 0.0, "t": 0.2}, "h6": {"rain": 0, "snow": 0.0, "t": 0.2}, "name": "Casone di Profecchia"}, "name": "Garfagnana", "slug": "garfagnana", "top": {"elev": 2054, "h3": {"rain": 0, "snow": 0.0, "t": -4.8}, "h6": {"rain": 0, "snow": 0.0, "t": -4.8}, "name": "Monte Prado"}}, {"lat": 44.2979, "lon": 10.2439, "low": {"elev": 1340, "h3": {"rain": 0, "snow": 0.0, "t": -1.4}, "h6": {"rain": 0, "snow": 0.0, "t": -1.4}, "name": "Cerreto Laghi"}, "name": "Cerreto Laghi", "slug": "cerreto-laghi", "top": {"elev": 1894, "h3": {"rain": 0, "snow": 0.0, "t": -4.5}, "h6": {"rain": 0, "snow": 0.0, "t": -4.5}, "name": "Monte La Nuda"}}, {"lat": 44.2972, "lon": 10.4279, "low": {"elev": 1150, "h3": {"rain": 0, "snow": 0.0, "t": 0.0}, "h6": {"rain": 0, "snow": 0.0, "t": 0.0}, "name": "Febbio"}, "name": "Febbio", "slug": "febbio", "top": {"elev": 2121, "h3": {"rain": 0, "snow": 0.0, "t": -5.5}, "h6": {"rain": 0, "snow": 0.0, "t": -5.5}, "name": "Monte Cusna"}}];
+  const map = L.map('radar', {scrollWheelZoom: false, zoomControl: true}).setView([44.2, 10.65], 9);
+  L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {maxZoom: 13, opacity: 0.85,
+    attribution: "Map \u00a9 \u003ca href=\"https://opentopomap.org\"\u003eOpenTopoMap\u003c/a\u003e (CC-BY-SA), data \u00a9 \u003ca href=\"https://www.openstreetmap.org/copyright\"\u003eOpenStreetMap\u003c/a\u003e"}).addTo(map);
+  pts.forEach(p => L.circleMarker([p.lat, p.lon], {radius: 6, color: '#0f2236', weight: 2, fillColor: '#fff', fillOpacity: 1})
+    .addTo(map).bindTooltip(p.name, {direction: 'top'}));
+  // le tile del radar hanno lo sfondo nero dove non piove: in fusione «screen» il nero sparisce e restano i colori
+  map.createPane('radar'); const pane = map.getPane('radar'); pane.style.zIndex = 450; pane.style.mixBlendMode = 'screen'; pane.style.pointerEvents = 'none';
+  const S3 = 'https://s3-prod-dpc-radar-webp-cache.s3.eu-south-1.amazonaws.com/SRI/';
+  const pad = n => String(n).padStart(2, '0');
+  const path = d => `${d.getUTCFullYear()}/${pad(d.getUTCMonth() + 1)}/${pad(d.getUTCDate())}/${pad(d.getUTCHours())}${pad(d.getUTCMinutes())}`;
+  const fmt = d => d.toLocaleTimeString("en", {hour: '2-digit', minute: '2-digit', timeZone: 'Europe/Rome'});
+  const msg = document.getElementById('rmsg'), tlab = document.getElementById('rtime');
+  const slide = document.getElementById('rslide'), btn = document.getElementById('rplay');
+  let layers = [], times = [], cur = -1, timer = null;
+  function show(i) {
+    if (cur >= 0) layers[cur].setOpacity(0);
+    layers[i].setOpacity(1); cur = i; slide.value = i;
+    tlab.textContent = fmt(times[i]) + (i === layers.length - 1 ? ' · ' + "latest" : '');
+  }
+  function play() { timer = setInterval(() => show((cur + 1) % layers.length), 700); btn.textContent = '⏸'; }
+  function stop() { clearInterval(timer); timer = null; btn.textContent = '▶'; }
+  btn.onclick = () => timer ? stop() : play();
+  slide.oninput = () => { stop(); show(+slide.value); };
+  fetch('https://radar-api.protezionecivile.it/findLastProductByType?type=SRI')
+    .then(r => r.json()).then(j => {
+      const last = new Date(j.lastProducts[0].time);
+      for (let k = 11; k >= 0; k--) times.push(new Date(last.getTime() - k * 300000));
+      layers = times.map(d => L.tileLayer(S3 + path(d) + '/{z}/{x}/{y}/sri.webp',
+        {pane: 'radar', maxNativeZoom: 7, maxZoom: 13, opacity: 0, errorTileUrl: 'data:image/gif;base64,R0lGODlhAQABAAAAACw='}).addTo(map));
+      show(layers.length - 1);
+      setTimeout(play, 1500);
+    }).catch(() => {
+      msg.innerHTML = "The Civil Protection radar is not responding right now. \u003ca href=\"https://radar.protezionecivile.it/\" rel=\"noopener\"\u003eOpen it on their website\u003c/a\u003e.";
+      tlab.textContent = '–';
+    });
+})();
+</script>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot-brand"><img src="../../static/brand/mark.svg" alt="" width="44" height="44"><span><b>Crinale</b><br><small>Snow forecasts for the Tuscan-Emilian Apennines, altitude by altitude</small></span></p>
+    <p class="follow">Follow us:
+      <a class="btn small tg" href="https://t.me/crinaleappennino" rel="noopener">Telegram</a>
+      <a class="btn small wa" href="https://whatsapp.com/channel/0029Vb9pWxjGZNCmNNe7Q32v" rel="noopener">WhatsApp</a></p>
+    <p><strong>Crinale</strong> · Snow forecasts for the Tuscan-Emilian Apennines, altitude by altitude. Updated 28/11/2026 16:04.</p>
+    <p class="small">Forecasts produced automatically from open-data numerical models (ItaliaMeteo-ARPAE ICON-2I, MeteoSwiss ICON-CH, DWD ICON, Météo-France AROME, ECMWF, NOAA GFS) via <a href="https://open-meteo.com/">Open-Meteo</a>, CC BY 4.0 licence. They are indicative estimates and do not replace official bulletins or the lift operators' announcements, which alone are authoritative on openings, slopes and snow cover: for warnings and safety always check <a href="https://www.cfr.toscana.it/">Tuscany Civil Protection</a>, <a href="https://allertameteo.regione.emilia-romagna.it/">Emilia-Romagna Weather Alerts</a> and the <a href="https://meteomont.carabinieri.it/">Meteomont</a> avalanche bulletin.</p>
+    <p class="small friends">Friends of the site: <a href="https://www.meteostorm.it/" rel="noopener">Meteostorm</a> (Liguria and thunderstorms)</p>
+    <p class="small">Real-time observations: <a href="https://www.cfr.toscana.it/">CFR Toscana</a>, <a href="https://www.arpae.it/">Arpae Emilia-Romagna</a> (CC BY 4.0) and <a href="https://www.meteonetwork.it/">MeteoNetwork</a> (CC BY 4.0), stations <a href="https://www.meteonetwork.eu/it/weather-station/tsc238">Val di Luce</a> and <a href="https://www.meteonetwork.eu/it/weather-station/tsc264">Rifugio Le Terrazze</a>.</p>
+    <p class="small"><a href="../../en/privacy/">Privacy</a> · <a href="../../en/metodo/">Method and sources</a> · <a href="../../en/come-funziona/">How forecasts work</a> · <a href="../../en/pagella/">Report card</a> · <a href="../../en/widget/">Free widget</a> · <a href="../../en/inverni/">Winters through the years</a> · <a href="../../en/segnala-neve/">Report the snow</a> · <a href="../../feed.xml">RSS</a> · <a href="../../api/v1/forecast.json">JSON data</a> · <a href="mailto:info@crinaleappennino.it">info@crinaleappennino.it</a></p>
+  </div>
+</footer>
+<script>
+(function () {
+  const bar = document.getElementById("appbar");
+  if (!bar) return;
+  const installed = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  if (installed) return;
+  const ua = navigator.userAgent;
+  const mobile = /iPhone|iPad|iPod|Android/.test(ua);
+  if (!mobile) return;
+  let visits = 1, closedAt = 0;
+  try {
+    visits = +localStorage.getItem("ab-visits") || 0;
+    if (!sessionStorage.getItem("ab-s")) { visits++; localStorage.setItem("ab-visits", visits); sessionStorage.setItem("ab-s", "1"); }
+    closedAt = +localStorage.getItem("ab-closed-at") || (localStorage.getItem("appbar-closed") === "1" ? Date.now() : 0);
+  } catch (e) {}
+  // dalla seconda visita; se chiuso, ripropone dopo 30 giorni
+  if (visits < 2 || (closedAt && Date.now() - closedAt < 30 * 864e5)) return;
+  const inapp = /FBAN|FBAV|Instagram|Line\/|Telegram|WhatsApp|GSA\//.test(ua);
+  bar.dataset.os = inapp ? "inapp" : /iPhone|iPad|iPod/.test(ua) ? "ios" : "android";
+  bar.hidden = false;
+  document.getElementById("appbar-close").addEventListener("click", () => {
+    bar.hidden = true;
+    try { localStorage.setItem("ab-closed-at", Date.now()); localStorage.removeItem("appbar-closed"); } catch (e) {}
+  });
+})();
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../../sw.js").catch(() => {});
+}
+let deferredInstall = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault(); deferredInstall = e;
+  document.querySelectorAll("#install-btn, .install-btn").forEach(b => b.hidden = false);
+  const ab = document.getElementById("appbar"); if (ab) ab.classList.add("can-install");
+});
+document.addEventListener("click", async e => {
+  if ((e.target.id === "install-btn" || e.target.classList.contains("install-btn")) && deferredInstall) {
+    deferredInstall.prompt(); await deferredInstall.userChoice; deferredInstall = null; e.target.hidden = true;
+  }
+  if (e.target.dataset && e.target.dataset.save && navigator.serviceWorker && navigator.serviceWorker.controller) {
+    const urls = JSON.parse(e.target.dataset.save).map(p => new URL(p, location.href).href);
+    navigator.serviceWorker.controller.postMessage({ type: "save", urls });
+    e.target.textContent = "Saved on your phone \u2713"; e.target.disabled = true;
+  }
+});
+</script>
+</body>
+</html>

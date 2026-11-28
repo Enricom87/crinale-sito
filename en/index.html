@@ -1,0 +1,823 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Crinale · Snow forecasts for the Tuscan-Emilian Apennines, altitude by altitude</title>
+<meta name="description" content="Snow forecasts at every altitude for Abetone, Cimone, Doganaccia, Corno alle Scale, Garfagnana, Cerreto Laghi, Febbio and the Tuscan-Emilian ridge, updated every morning from high-resolution weather models.">
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Crinale">
+<meta property="og:title" content="Crinale · Snow forecasts for the Tuscan-Emilian Apennines, altitude by altitude">
+<meta property="og:description" content="Snow forecasts at every altitude for Abetone, Cimone, Doganaccia, Corno alle Scale, Garfagnana, Cerreto Laghi, Febbio and the Tuscan-Emilian ridge, updated every morning from high-resolution weather models.">
+<meta property="og:url" content="https://crinaleappennino.it/en/">
+<meta property="og:locale" content="en">
+<meta property="og:image" content="https://crinaleappennino.it/static/photos/gomito-selletta.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="preload" href="../static/fonts/pjs-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../static/fonts/pjs-800.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../static/style.css?v=b6f59caa">
+<link rel="alternate" type="application/rss+xml" title="Crinale" href="../feed.xml">
+<link rel="icon" href="../static/brand/mark.svg" type="image/svg+xml">
+<link rel="alternate" hreflang="it" href="https://crinaleappennino.it/">
+<link rel="alternate" hreflang="en" href="https://crinaleappennino.it/en/">
+<link rel="alternate" hreflang="de" href="https://crinaleappennino.it/de/">
+<link rel="alternate" hreflang="fr" href="https://crinaleappennino.it/fr/">
+<link rel="alternate" hreflang="es" href="https://crinaleappennino.it/es/">
+<link rel="alternate" hreflang="zh-Hans" href="https://crinaleappennino.it/zh/">
+<link rel="alternate" hreflang="x-default" href="https://crinaleappennino.it/">
+<link rel="canonical" href="https://crinaleappennino.it/en/">
+<link rel="manifest" href="../manifest.webmanifest">
+<meta name="theme-color" content="#0f2236">
+<link rel="apple-touch-icon" href="../static/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Crinale">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+</head>
+<body>
+<svg xmlns="http://www.w3.org/2000/svg" style="display:none" aria-hidden="true">
+  <defs>
+    <g id="g-cloud"><circle cx="24" cy="34" r="11"/><circle cx="36" cy="28" r="13"/><circle cx="46" cy="36" r="9"/><rect x="18" y="34" width="34" height="11" rx="5.5"/></g>
+    <g id="g-flake" stroke-width="2.2" stroke-linecap="round"><path d="M0 -5V5M-4.3 -2.5L4.3 2.5M-4.3 2.5L4.3 -2.5"/></g>
+  </defs>
+  <symbol id="ic-sun" viewBox="0 0 64 64"><g stroke="#f5a623" stroke-width="4" stroke-linecap="round"><path d="M32 6v7M32 51v7M6 32h7M51 32h7M13.6 13.6l5 5M45.4 45.4l5 5M13.6 50.4l5-5M45.4 18.6l5-5"/></g><circle cx="32" cy="32" r="12" fill="#ffc83d"/></symbol>
+  <symbol id="ic-sun-cold" viewBox="0 0 64 64"><g stroke="#7cc4f2" stroke-width="4" stroke-linecap="round"><path d="M32 6v7M32 51v7M6 32h7M51 32h7M13.6 13.6l5 5M45.4 45.4l5 5M13.6 50.4l5-5M45.4 18.6l5-5"/></g><circle cx="32" cy="32" r="12" fill="#ffd45e"/></symbol>
+  <symbol id="ic-partly" viewBox="0 0 64 64"><g stroke="#f5a623" stroke-width="3.5" stroke-linecap="round"><path d="M24 6v6M8 22h6M12.7 10.7l4 4M35.3 10.7l-4 4"/></g><circle cx="24" cy="24" r="10" fill="#ffc83d"/><use href="#g-cloud" fill="#dfe8f0" stroke="#b9c8d6" stroke-width="1" transform="translate(2 6)"/></symbol>
+  <symbol id="ic-cloud" viewBox="0 0 64 64"><use href="#g-cloud" fill="#c9d6e2" transform="translate(-3 -2)"/></symbol>
+  <symbol id="ic-showers" viewBox="0 0 64 64"><g stroke="#f5a623" stroke-width="3" stroke-linecap="round"><path d="M22 4v5M8 18h5M12 8l3.5 3.5"/></g><circle cx="22" cy="19" r="8" fill="#ffc83d"/><use href="#g-cloud" fill="#c9d6e2" transform="translate(0 -4)"/><g stroke="#3d8fd6" stroke-width="3" stroke-linecap="round"><path d="M28 48l-3 7M40 48l-3 7"/></g></symbol>
+  <symbol id="ic-rain" viewBox="0 0 64 64"><use href="#g-cloud" fill="#9fb0c1" transform="translate(-3 -8)"/><g stroke="#2f7fd0" stroke-width="3" stroke-linecap="round"><path d="M22 44l-3 8M32 44l-3 8M42 44l-3 8M27 54l-2 5M37 54l-2 5"/></g></symbol>
+  <symbol id="ic-storm" viewBox="0 0 64 64"><use href="#g-cloud" fill="#7d8ea0" transform="translate(-3 -8)"/><path d="M34 38l-9 13h7l-4 11 12-15h-7l5-9z" fill="#ffcc2e" stroke="#e0a800" stroke-width="1"/><g stroke="#2f7fd0" stroke-width="3" stroke-linecap="round"><path d="M20 44l-2 6M46 44l-2 6"/></g></symbol>
+  <symbol id="ic-snow" viewBox="0 0 64 64"><use href="#g-cloud" fill="#d3dfea" transform="translate(-3 -8)"/><g stroke="#4aa3e0"><use href="#g-flake" transform="translate(24 50)"/><use href="#g-flake" transform="translate(40 50)"/></g></symbol>
+  <symbol id="ic-snow-heavy" viewBox="0 0 64 64"><use href="#g-cloud" fill="#b9cad9" transform="translate(-3 -10)"/><g stroke="#2f8fd8"><use href="#g-flake" transform="translate(18 46)"/><use href="#g-flake" transform="translate(32 46)"/><use href="#g-flake" transform="translate(46 46)"/><use href="#g-flake" transform="translate(25 57)"/><use href="#g-flake" transform="translate(39 57)"/></g></symbol>
+  <symbol id="ic-wind" viewBox="0 0 64 64"><g fill="none" stroke="#6f8aa3" stroke-width="4" stroke-linecap="round"><path d="M8 24h30a7 7 0 1 0-7-7"/><path d="M8 34h42a7 7 0 1 1-7 7"/><path d="M8 44h20"/></g></symbol>
+  <symbol id="ic-moon" viewBox="0 0 64 64"><path d="M40 12a20 20 0 1 0 14 30 17 17 0 0 1-14-30z" fill="#ffe08a" stroke="#e8c45a" stroke-width="1.5"/></symbol>
+  <symbol id="ic-moon-cloud" viewBox="0 0 64 64"><path d="M30 6a14 14 0 1 0 12 21 12 12 0 0 1-12-21z" fill="#ffe08a" stroke="#e8c45a" stroke-width="1.2"/><use href="#g-cloud" fill="#dfe8f0" stroke="#b9c8d6" stroke-width="1" transform="translate(2 6)"/></symbol>
+</svg>
+<header class="top">
+  <div class="wrap bar">
+    <a class="brand" href="../en/"><img src="../static/brand/mark.svg" alt="" width="36" height="36"><span class="brand-txt"><b>Crinale</b><small>APPENNINO</small></span></a>
+    <nav>
+      <a href="../en/#localita">Resorts</a>
+      <a href="../en/tendenze/">Trends</a>
+      <a href="../en/radar/">Radar</a>
+      <a href="../en/percorsi/">Routes</a>
+      <a href="../en/newsletter/">Snow alerts</a>
+      <a href="../en/metodo/">How it works</a>
+      <a href="../en/app/">App</a>
+      <a href="../en/sponsor/" class="cta">Become a sponsor</a>
+      <a class="tg-ico" href="https://t.me/crinaleappennino" rel="noopener" aria-label="Telegram channel" title="Telegram channel"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg><span>Telegram</span></a>
+      <details class="langs"><summary aria-label="Language">🌐 EN</summary><div><a href="../" hreflang="it" lang="it">Italiano</a><a href="../en/" hreflang="en" lang="en" aria-current="true">English</a><a href="../de/" hreflang="de" lang="de">Deutsch</a><a href="../fr/" hreflang="fr" lang="fr">Français</a><a href="../es/" hreflang="es" lang="es">Español</a><a href="../zh/" hreflang="zh-Hans" lang="zh-Hans">中文</a></div></details>
+    </nav>
+  </div>
+</header>
+<div class="appbar" id="appbar" hidden>
+  <div class="wrap appbar-in">
+    <img src="../static/brand/mark.svg" alt="" width="36" height="36">
+    <a class="appbar-txt" href="../en/app/">
+      <strong>📲 Get the Crinale app</strong>
+      <small class="ab-short ab-ios">Tap <b>Share</b> ⬆️ then <b>Add to Home Screen</b></small>
+      <small class="ab-short ab-android">Chrome's ⋮ menu → <b>Install app</b></small>
+      <small class="ab-short ab-inapp">Open the site in Safari or Chrome to install it</small>
+    </a>
+    <button class="btn small" id="install-btn" hidden>Install</button>
+    <button class="ab-close" id="appbar-close" aria-label="Close">×</button>
+  </div>
+</div>
+
+<main>
+
+<section class="hero has-photo" style="background-image:linear-gradient(180deg,rgba(9,22,36,.35),rgba(9,22,36,.72)),url('../static/photos/gomito-selletta.jpg');background-position:center 40%">
+  <div class="wrap">
+    <p class="kicker">Tuscan-Emilian Apennines · 11 resorts · 24 routes</p>
+    <h1>Heading up or not? We&#39;ll tell you in a minute.</h1>
+    <p class="lead">Friday evening, same story every time: ten weather sites, three webcams and a group chat saying everything and its opposite. Crinale brings together the best weather models, open lifts and the finest routes, from Abetone to Cusna. On one page, every morning, free.</p>
+    <p class="hero-cta"><a class="btn" href="#viaggio">See how it works ↓</a>
+    <a class="btn tg" href="https://t.me/crinaleappennino" rel="noopener"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg> Follow on Telegram</a></p>
+    <div class="today-box"><b>Today on the ridge</b> <span>Snow is keeping us waiting, but we check the models several times a day: as soon as a window opens, we&#39;ll tell you here first (and by email, if you subscribe).</span> <small>updated 28/11/2026 16:04</small><span class="runs-line">📡 Data: European 07:00 run · scenarios 07:00 · American 07:00 · ICON-2I 13:00 · AROME 10:00 · <b>next European model around 20:54</b></span></div>
+  </div>
+  <span class="photo-credit">Photo: Innocenti.rob · <a href="https://commons.wikimedia.org/wiki/File:Monte_Gomito_e_rifugio_della_Selletta.JPG" rel="noopener">CC BY 3.0</a></span>
+</section>
+
+
+<section class="wrap why-box">
+  <p class="kicker-dark">🎯 Why Crinale is different</p>
+  <h2>Forecasts made for the ridge, not for all of Italy</h2>
+  <p>National weather sites use the same formula from Bolzano to Palermo, and models that see the Apennines as a rounded hill. So they get wrong exactly what matters most here: the altitude at which it snows and how much snow stays.</p>
+  <ul class="why">
+    <li><span>🧭</span><div><b>The wind picks the model</b> No blind averaging: with the Libeccio the 2 km models (ICON-2I and AROME), which see the clouds hitting the Tuscan side, take the lead; with the Grecale the best models for the Emilian side weigh more.</div></li>
+    <li><span>🌡️</span><div><b>The real snow level</b> Not the theoretical freezing level: we use the wet-bulb temperature, lower the snow level when it snows hard and account for the cold air pooling in hollows such as Val di Luce and Lago Santo.</div></li>
+    <li><span>📏</span><div><b>Snow at every altitude</b> At the base, halfway up and at the summit. Heavy and wet with the Libeccio, powdery in the cold, and less where the wind sweeps the ridges, from Gomito to Croce Arcana to Cimone.</div></li>
+    <li><span>🔭</span><div><b>Two engines, two horizons</b> Local physics for the first 5 days; from day 6 to 30 about 300 scenarios plus the big-cold indices (NAO, AO, polar vortex).</div></li>
+  </ul>
+  <p class="why-foot">We don&#39;t ask you to take our word for it: every day we compare our forecasts with the snow measured by the stations, and the results are public. <a href="../en/pagella/">📊 Report card</a> · <a href="../en/metodo/">Method and sources</a></p>
+</section>
+
+
+
+
+<section class="wrap journey" id="viaggio">
+  <p class="kicker-dark">How it works</p>
+  <h2>Your Apennine weekend, in four steps</h2>
+  <ol class="steps">
+    <li><span class="st-n">1</span><span class="st-ic">🛋️</span>
+      <h3>Friday evening, from the sofa</h3>
+      <p>Scroll through the resorts and find out where it&#39;s snowing, where the sun is shining and who gets the best of it in the days ahead.</p>
+      <a href="#localita">See the resorts →</a></li>
+    <li><span class="st-n">2</span><span class="st-ic">☕</span>
+      <h3>Saturday, at dawn</h3>
+      <p>Hour-by-hour weather, wind on the ridge and open lifts: decide when to set off and when to head back.</p>
+      <a href="../en/abetone/#ore">Open the hourly forecast →</a></li>
+    <li><span class="st-n">3</span><span class="st-ic">🥾</span>
+      <h3>Up there, even with no signal</h3>
+      <p>24 routes with GPX tracks and forecast conditions at the right altitude. Save them on your phone before you go.</p>
+      <a href="../en/percorsi/">Pick a route →</a></li>
+    <li><span class="st-n">4</span><span class="st-ic">🔔</span>
+      <h3>The rest of the week</h3>
+      <p>No need to remember to check: when snow is on the way, we&#39;ll let you know, on Telegram or by email.</p>
+      <a href="https://t.me/crinaleappennino" rel="noopener">Turn on alerts →</a></li>
+  </ol>
+</section>
+
+
+<section class="wrap" id="dovevado">
+  <h2>Where should I go this weekend?</h2>
+  <p class="muted">All locations compared: weather, fresh snow and open lifts.</p>
+  <div class="bp-grid">
+    
+    <article class="bp-card">
+      <span class="bp-day">Saturday 28 November</span>
+      <h3>The best spot is Febbio</h3>
+      <ol class="bp-list">
+        
+        <li class="wk-green"><a href="../en/febbio/#weekend"><i class="wk-dot"></i><b>Febbio</b><span>dry, with some cloud</span></a></li>
+        
+        <li class="wk-yellow"><a href="../en/corno-alle-scale/#weekend"><i class="wk-dot"></i><b>Corno alle Scale</b><span>strong wind on the ridge (58 km/h)</span></a></li>
+        
+        <li class="wk-yellow"><a href="../en/cimone/#weekend"><i class="wk-dot"></i><b>Cimone</b><span>strong wind on the ridge (67 km/h)</span></a></li>
+        
+        <li class="wk-yellow"><a href="../en/le-polle/#weekend"><i class="wk-dot"></i><b>Le Polle</b><span>strong wind on the ridge (67 km/h)</span></a></li>
+        
+      </ol>
+      <div class="bp-foot"><span class="wk-sure s-sure">🔒 Reliable</span>
+      </div>
+    </article>
+    
+    <article class="bp-card">
+      <span class="bp-day">Sunday 29 November</span>
+      <h3>The best spot is Febbio</h3>
+      <ol class="bp-list">
+        
+        <li class="wk-green"><a href="../en/febbio/#weekend"><i class="wk-dot"></i><b>Febbio</b><span>sunshine</span></a></li>
+        
+        <li class="wk-yellow"><a href="../en/abetone/#weekend"><i class="wk-dot"></i><b>Abetone</b><span>strong wind on the ridge (51 km/h) · 0/17 lifts</span></a></li>
+        
+        <li class="wk-yellow"><a href="../en/cimone/#weekend"><i class="wk-dot"></i><b>Cimone</b><span>strong wind on the ridge (62 km/h)</span></a></li>
+        
+        <li class="wk-yellow"><a href="../en/le-polle/#weekend"><i class="wk-dot"></i><b>Le Polle</b><span>strong wind on the ridge (62 km/h)</span></a></li>
+        
+      </ol>
+      <div class="bp-foot"><span class="wk-sure s-sure">🔒 Reliable</span>
+      </div>
+    </article>
+    
+  </div>
+</section>
+
+
+
+<section class="wrap now-box" id="adesso">
+  <h2>📡 Right now on the ridge <small class="muted">at 16:05</small></h2>
+  <p class="now-z">Where it&#39;s falling, from the stations: likely snow above about 950 m.</p>
+  
+  <div class="scroll"><table class="now-t">
+    <tr><th>Spot</th><th>Now</th><th>Next 6 hours</th></tr>
+    <tr><td><a href="../en/punti/monte-gomito/">Monte Gomito</a> <small class="muted">1892 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/val-di-luce/">Val di Luce</a> <small class="muted">1500 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/abetone-passo/">Passo dell&#39;Abetone</a> <small class="muted">1388 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/monte-cimone/">Monte Cimone</a> <small class="muted">2165 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/passo-del-lupo/">Passo del Lupo</a> <small class="muted">1550 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/lago-ninfa/">Lago della Ninfa</a> <small class="muted">1500 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/cimoncino/">Cimoncino</a> <small class="muted">1400 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/le-polle/">Le Polle</a> <small class="muted">1300 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/corno-alle-scale/">Corno alle Scale</a> <small class="muted">1945 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/cavone/">Cavone</a> <small class="muted">1422 m</small></td>
+      <td class="ph ph-neve">❄️ likely snow<br><small class="muted">Lago Pratignano</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/croce-arcana/">Croce Arcana</a> <small class="muted">1716 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/doganaccia/">Doganaccia</a> <small class="muted">1540 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/monte-prado/">Monte Prado</a> <small class="muted">2054 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/passo-radici/">Passo delle Radici</a> <small class="muted">1529 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/casone-profecchia/">Casone di Profecchia</a> <small class="muted">1314 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/monte-cusna/">Monte Cusna</a> <small class="muted">2121 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/cerreto-laghi/">Cerreto Laghi</a> <small class="muted">1340 m</small></td>
+      <td class="ph ph-asciutto">–<br><small class="muted">no station nearby</small></td>
+      <td>dry</td></tr><tr><td><a href="../en/punti/febbio/">Febbio</a> <small class="muted">1150 m</small></td>
+      <td class="ph ph-asciutto">dry</td>
+      <td>dry</td></tr>
+  </table></div>
+  <details><summary>The stations right now</summary><ul class="links"><li>Lago Pratignano 1319 m: -1.0 °C, wet bulb -1.4 °C · snow</li></ul></details>
+  <p class="small"><a href="../en/radar/">🛰️ Radar, last hour</a> · Webcams: <a href="https://www.skylinewebcams.com/webcam/italia/toscana/pistoia/abetone-monte-gomito.html" rel="noopener" target="_blank">Monte Gomito 1.893 m</a> · <a href="https://www.skylinewebcams.com/webcam/italia/toscana/pistoia/abetone-ovovia.html" rel="noopener" target="_blank">Ovovia, Passo dell&#39;Abetone</a> · <a href="https://www.skylinewebcams.com/webcam/italia/emilia-romagna/modena/monte-cimone.html" rel="noopener" target="_blank">Passo del Lupo verso il Cimone</a> · <a href="https://www.snow-online.com/webcam/cimone--passo-del-lupo.htm" rel="noopener" target="_blank">Passo del Lupo 1.541 m</a> · <a href="https://www.feratel.com/en/webcams/italy/lizzano-in-belvedere-corno-alle-scale.html" rel="noopener" target="_blank">Corno alle Scale</a> · <a href="https://www.snow-online.com/webcam/corno-alle-scale-ski-resort--le-rocce-chair-lift.htm" rel="noopener" target="_blank">Seggiovia Le Rocce 1.727 m</a> · <a href="https://www.onthesnow.co.nz/tuscany/casone-di-profecchia/webcams" rel="noopener" target="_blank">Webcam Casone di Profecchia</a> · <a href="https://www.skiresort.info/ski-resort/febbio-2000-monte-cusna/webcams/" rel="noopener" target="_blank">Webcam Alpe di Cusna – Febbio</a></p>
+  <p class="small muted">Phase inferred from the stations&#39; temperature, humidity and last-hour precipitation: stations can&#39;t see the flakes. Stations: CFR Toscana, Arpae Emilia-Romagna, <a href="https://www.meteonetwork.it/">MeteoNetwork</a> (CC BY 4.0).</p>
+</section>
+
+
+<section class="wrap" id="localita">
+  <h2>Choose where to go</h2>
+  <p class="muted">Every spot has its own snow: slopes, hollows and summits, altitude by altitude. Numbers from our calculation for the next 5 days.</p>
+  
+  <div class="sg">
+    <a class="sg-head" href="../en/abetone/" style="background-image:linear-gradient(90deg,rgba(9,22,36,.82),rgba(9,22,36,.25)),url('../static/photos/abetone-enrico-640.jpg');background-position:center 44%">
+      <h3>Abetone</h3><small>Tuscany · PT</small><span class="sg-more">Lifts, webcams and road →</span></a>
+    <div class="sg-grid">
+    
+      <a class="spot sp-vetta" href="../en/punti/monte-gomito/">
+        <span class="sp-name"><b>Monte Gomito</b> <small>1892 m · summit</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Sun and crisp air">Today<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/val-di-luce/">
+        <span class="sp-name"><b>Val di Luce</b> <small>1500 m · slopes</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Overcast">Today<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/abetone-passo/">
+        <span class="sp-name"><b>Passo dell&#39;Abetone</b> <small>1388 m · slopes</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Overcast">Today<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+    </div>
+  </div>
+  
+  <div class="sg">
+    <a class="sg-head" href="../en/cimone/" style="background-image:linear-gradient(90deg,rgba(9,22,36,.82),rgba(9,22,36,.25)),url('../static/photos/cimone-lupo-640.jpg');background-position:center 45%">
+      <h3>Cimone</h3><small>Emilia-Romagna · MO</small><span class="sg-more">Lifts, webcams and road →</span></a>
+    <div class="sg-grid">
+    
+      <a class="spot sp-vetta" href="../en/punti/monte-cimone/">
+        <span class="sp-name"><b>Monte Cimone</b> <small>2165 m · summit</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="Snow, 1 cm">Today<svg viewBox="0 0 64 64"><use href="#ic-snow"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Strong wind on the ridge">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/passo-del-lupo/">
+        <span class="sp-name"><b>Passo del Lupo</b> <small>1550 m · slopes</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="Snow, 1 cm">Today<svg viewBox="0 0 64 64"><use href="#ic-snow"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/lago-ninfa/">
+        <span class="sp-name"><b>Lago della Ninfa</b> <small>1500 m · slopes</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="Snow, 1 cm">Today<svg viewBox="0 0 64 64"><use href="#ic-snow"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/cimoncino/">
+        <span class="sp-name"><b>Cimoncino</b> <small>1400 m · slopes</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="A few drops">Today<svg viewBox="0 0 64 64"><use href="#ic-showers"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Full sun">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/le-polle/">
+        <span class="sp-name"><b>Le Polle</b> <small>1300 m · slopes</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="A few drops">Today<svg viewBox="0 0 64 64"><use href="#ic-showers"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Full sun">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+    </div>
+  </div>
+  
+  <div class="sg">
+    <a class="sg-head" href="../en/corno-alle-scale/" style="background-image:linear-gradient(90deg,rgba(9,22,36,.82),rgba(9,22,36,.25)),url('../static/photos/corno-enrico-640.jpg');background-position:center 50%">
+      <h3>Corno alle Scale e Doganaccia</h3><small>Emilia-Romagna · BO · Toscana · PT</small><span class="sg-more">Lifts, webcams and road →</span></a>
+    <div class="sg-grid">
+    
+      <a class="spot sp-vetta" href="../en/punti/corno-alle-scale/">
+        <span class="sp-name"><b>Corno alle Scale</b> <small>1945 m · summit</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="Snow, 1 cm">Today<svg viewBox="0 0 64 64"><use href="#ic-snow"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/cavone/">
+        <span class="sp-name"><b>Cavone</b> <small>1422 m · slopes</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="Snow, 1 cm">Today<svg viewBox="0 0 64 64"><use href="#ic-snow"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-vetta" href="../en/punti/croce-arcana/">
+        <span class="sp-name"><b>Croce Arcana</b> <small>1716 m · summit</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="A few drops">Today<svg viewBox="0 0 64 64"><use href="#ic-showers"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Mon<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/doganaccia/">
+        <span class="sp-name"><b>Doganaccia</b> <small>1540 m · slopes</small></span>
+        <span class="sp-num"><b>1 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">Snow from Saturday 28 November, from 1000 m up.</span>
+        <span class="mini-icons strip5"><span title="A few drops">Today<svg viewBox="0 0 64 64"><use href="#ic-showers"/></svg><strong>1 cm</strong><em>1000 m</em></span><span title="Strong wind on the ridge">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Mon<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+    </div>
+  </div>
+  
+  <div class="sg">
+    <a class="sg-head" href="../en/garfagnana/" style="background-image:linear-gradient(90deg,rgba(9,22,36,.82),rgba(9,22,36,.25)),url('../static/photos/sanpellegrino-enrico-640.jpg');background-position:center 50%">
+      <h3>Garfagnana</h3><small>Tuscany · LU</small><span class="sg-more">Lifts, webcams and road →</span></a>
+    <div class="sg-grid">
+    
+      <a class="spot sp-vetta" href="../en/punti/monte-prado/">
+        <span class="sp-name"><b>Monte Prado</b> <small>2054 m · summit</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Strong wind on the ridge">Today<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Mon<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/passo-radici/">
+        <span class="sp-name"><b>Passo delle Radici</b> <small>1529 m · slopes</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="A few drops">Today<svg viewBox="0 0 64 64"><use href="#ic-showers"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Mon<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/casone-profecchia/">
+        <span class="sp-name"><b>Casone di Profecchia</b> <small>1314 m · slopes</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Strong wind on the ridge">Today<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Strong wind on the ridge">Mon<svg viewBox="0 0 64 64"><use href="#ic-wind"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+    </div>
+  </div>
+  
+  <div class="sg">
+    <a class="sg-head" href="../en/febbio/" style="background-image:linear-gradient(90deg,rgba(9,22,36,.82),rgba(9,22,36,.25)),url('../static/photos/cusna-inverno-640.jpg');background-position:center 80%">
+      <h3>Appennino reggiano</h3><small>Emilia-Romagna · RE</small><span class="sg-more">Lifts, webcams and road →</span></a>
+    <div class="sg-grid">
+    
+      <a class="spot sp-vetta" href="../en/punti/monte-cusna/">
+        <span class="sp-name"><b>Monte Cusna</b> <small>2121 m · summit</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Sun and clouds">Today<svg viewBox="0 0 64 64"><use href="#ic-partly"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and crisp air">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun-cold"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/cerreto-laghi/">
+        <span class="sp-name"><b>Cerreto Laghi</b> <small>1340 m · slopes</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Sun and clouds">Today<svg viewBox="0 0 64 64"><use href="#ic-partly"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Sun and clouds">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-partly"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+      <a class="spot sp-piste" href="../en/punti/febbio/">
+        <span class="sp-name"><b>Febbio</b> <small>1150 m · slopes</small></span>
+        <span class="sp-num"><b>0 cm</b> <small>by Wed</small></span>
+        
+        
+        <span class="sp-lead">No snow in the next 5 days.</span>
+        <span class="mini-icons strip5"><span title="Overcast">Today<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Tomorrow<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Overcast">Mon<svg viewBox="0 0 64 64"><use href="#ic-cloud"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Tue<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span><span title="Full sun">Wed<svg viewBox="0 0 64 64"><use href="#ic-sun"/></svg><strong>–</strong><em>&nbsp;</em></span></span>
+        
+      </a>
+    
+    </div>
+  </div>
+  
+  <p class="small muted">Other areas: <a href="../en/abetone/">Abetone</a> · <a href="../en/cimone/">Cimone</a> · <a href="../en/le-polle/">Le Polle</a> · <a href="../en/cimoncino/">Cimoncino</a> · <a href="../en/doganaccia/">Doganaccia</a> · <a href="../en/corno-alle-scale/">Corno alle Scale</a> · <a href="../en/lago-scaffaiolo/">Lago Scaffaiolo</a> · <a href="../en/lago-santo/">Lago Santo</a> · <a href="../en/garfagnana/">Garfagnana</a> · <a href="../en/cerreto-laghi/">Cerreto Laghi</a> · <a href="../en/febbio/">Febbio</a></p>
+</section>
+
+
+
+
+<section class="wrap"><article class="punto">
+  <span class="kicker">Today&#39;s outlook · Saturday 28 November</span>
+  <h2>Snow needs patience, but winter shows up around Saturday 28 November</h2>
+  <h3>The next few days</h3><p>And the weekend? Saturday 28 November and Sunday 29 November: the best spot is Febbio.</p><h3>The trend, from Thu 3 to Mon 7</h3><p>From the weekend on, dry days with normal temperatures alternates with dry, mild days, with temperatures at altitude around zero. The news is the cold: in about half of the scenarios the air at 1500 m drops below −2 °C, especially around Saturday 5 December, exactly what snowmaking needs. Snow, on the other hand, is still a gamble: it shows up in about one scenario in ten.</p>
+  <a class="punto-more" href="../en/tendenze/2026-11-28/">Read the full article →</a>
+</article></section>
+
+
+<section class="wrap">
+  <a class="pg-banner" href="../en/pagella/">
+    <span class="pg-ico" aria-hidden="true">📊</span>
+    <span class="pg-txt">
+      <b>Report card: how often we get it right</b>
+      
+      <span>Every day we compare our forecasts with the snow measured by the stations and with the raw models. Report card under construction: 5 snow days assessed so far.</span>
+      
+    </span>
+    <span class="pg-go" aria-hidden="true">→</span>
+  </a>
+</section>
+
+
+<section class="wrap" id="eventi">
+  <h2>🎟️ Events in the Apennines</h2>
+  <p class="muted">What&#39;s on in the mountains over the coming weeks, from official sources.</p>
+  <ul class="ev-list">
+    
+    <li><span class="ev-when">Sat 19 – Thu 7</span>
+      <span class="ev-body"><a href="https://emiliaromagnaturismo.it/en/events/natale-al-cimone" rel="noopener" target="_blank"><b>Natale al Cimone!</b></a>
+      
+      <span class="muted small">Fanano · <a href="../en/cimone/#cosafare">Cimone</a></span></span></li>
+    
+  </ul>
+  
+  <p class="small muted">Events: open data from Emilia-Romagna Turismo, licence CC BY 4.0.</p>
+  <p class="ev-cta"><a class="btn small ghost" href="../en/segnala/">🎟️ Organising an event? Submit it for free</a></p>
+</section>
+
+
+<section class="wrap">
+  <div class="tg-band">
+    <div class="tg-band-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M21.9 4.3 18.7 19.4c-.2 1-.9 1.3-1.7.8l-4.8-3.5-2.3 2.2c-.3.3-.5.5-1 .5l.3-4.9 8.9-8c.4-.3-.1-.5-.6-.2L6.5 13.2 1.8 11.7c-1-.3-1-1 .2-1.5L20.5 3c.9-.3 1.6.2 1.4 1.3z"/></svg></div>
+    <div><h2>The ridge round-up, every morning on Telegram</h2>
+    <p>One message a day covering every resort, plus an alert as soon as snow is on the way. Free, no email.</p></div>
+    <div class="tg-btns"><a class="btn tg" href="https://t.me/crinaleappennino" rel="noopener">Follow on Telegram</a>
+    <a class="btn ghost" href="https://t.me/crinaleappennino_bot?start" rel="noopener">🔔 Only my places</a>
+    <a class="btn ghost" href="../en/segnala-neve/">📍 Report the snow</a></div>
+  </div>
+</section>
+
+
+
+<section class="wrap syn-sec">
+  <p class="kicker-dark">Cold and snow, day by day</p>
+  <h2>❄️ Saturday 28 November: snow down to the resorts, then from Sunday 29 November real cold but dry: good nights for the snow guns</h2>
+  <div class="syn-card">
+    <div class="syn-chart-wrap"><div class="syn-scroll"><svg viewBox="0 0 900 250" class="syn-chart" role="img" aria-label="Temperature at 1,500 m"><rect x="26" y="22" width="704" height="53.3" fill="#fdf3e1"/><rect x="26" y="75.3" width="704" height="33.1" fill="#eaf4fd"/><rect x="26" y="108.5" width="704" height="79.5" fill="#d6e8fb"/><text x="754" y="52.7" class="zone z-mild">too mild</text><text x="754" y="95.9" class="zone z-top">snow on the peaks</text><text x="754" y="152.2" class="zone z-low">snow at resorts</text><polygon points="26.0,95.4 104.2,63.4 182.4,80.6 260.7,87.3 338.9,55.4 417.1,35.3 495.3,64.6 573.6,87.5 651.8,84.6 730.0,48.8 730.0,135.0 651.8,129.8 573.6,146.9 495.3,148.2 417.1,122.2 338.9,147.4 260.7,159.1 182.4,137.6 104.2,123.1 26.0,137.6" fill="#64748b" opacity=".16"/><polyline points="26.0,137.6 104.2,120.4 182.4,131.0 260.7,115.1 338.9,60.7 417.1,62.6 495.3,89.3 573.6,109.2 651.8,108.5 730.0,103.7" fill="none" stroke="#0f2236" stroke-width="2.5" stroke-linejoin="round"/><circle cx="26.0" cy="137.6" r="3.5" fill="#0f2236"/><text x="26.0" y="128.6" text-anchor="middle" class="val">-2°</text><text x="26.0" y="208" text-anchor="middle" class="fall f-snow">❄️ 1 mm</text><text x="26.0" y="226" text-anchor="middle" class="fall">🌙</text><text x="26.0" y="244" text-anchor="middle" class="day">Sat 28</text><circle cx="104.2" cy="120.4" r="3.5" fill="#0f2236"/><text x="104.2" y="111.4" text-anchor="middle" class="val">-1°</text><text x="104.2" y="208" text-anchor="middle" class="fall">🌙</text><text x="104.2" y="244" text-anchor="middle" class="day">Sun 29</text><circle cx="182.4" cy="131.0" r="3.5" fill="#0f2236"/><text x="182.4" y="122.0" text-anchor="middle" class="val">-2°</text><text x="182.4" y="208" text-anchor="middle" class="fall">🌙</text><text x="182.4" y="244" text-anchor="middle" class="day">Mon 30</text><circle cx="260.7" cy="115.1" r="3.5" fill="#0f2236"/><text x="260.7" y="106.1" text-anchor="middle" class="val">0°</text><text x="260.7" y="208" text-anchor="middle" class="fall">🌙</text><text x="260.7" y="244" text-anchor="middle" class="day">Tue 1</text><circle cx="338.9" cy="60.7" r="3.5" fill="#0f2236"/><text x="338.9" y="51.7" text-anchor="middle" class="val">+4°</text><text x="338.9" y="208" text-anchor="middle" class="fall">🌗</text><text x="338.9" y="244" text-anchor="middle" class="day">Wed 2</text><circle cx="417.1" cy="62.6" r="3.5" fill="#0f2236"/><text x="417.1" y="53.6" text-anchor="middle" class="val">+3°</text><text x="417.1" y="208" text-anchor="middle" class="fall">🌗</text><text x="417.1" y="244" text-anchor="middle" class="day">Thu 3</text><circle cx="495.3" cy="89.3" r="3.5" fill="#0f2236"/><text x="495.3" y="80.3" text-anchor="middle" class="val">+1°</text><text x="495.3" y="208" text-anchor="middle" class="fall">🌗</text><text x="495.3" y="244" text-anchor="middle" class="day">Fri 4</text><circle cx="573.6" cy="109.2" r="3.5" fill="#0f2236"/><text x="573.6" y="100.2" text-anchor="middle" class="val">0°</text><text x="573.6" y="208" text-anchor="middle" class="fall">🌙</text><text x="573.6" y="244" text-anchor="middle" class="day">Sat 5</text><circle cx="651.8" cy="108.5" r="3.5" fill="#0f2236"/><text x="651.8" y="99.5" text-anchor="middle" class="val">0°</text><text x="651.8" y="208" text-anchor="middle" class="fall">🌙</text><text x="651.8" y="244" text-anchor="middle" class="day">Sun 6</text><circle cx="730.0" cy="103.7" r="3.5" fill="#0f2236"/><text x="730.0" y="94.7" text-anchor="middle" class="val">0°</text><text x="730.0" y="208" text-anchor="middle" class="fall">🌗</text><text x="730.0" y="244" text-anchor="middle" class="day">Mon 7</text></svg></div><p class="muted small">Temperature at 1,500 m: in the blue band snow can reach the resorts, in the light-blue band it whitens the peaks. The grey band is the disagreement between models; 🌙 good night for the snow guns; 🌗 cold night only low down and in hollows, with mild air aloft: lower output.</p></div>
+    <div class="syn-days">
+    
+      <div class="syn-day v-fav">
+        <span class="sd-day">Sat 28</span>
+        <span class="sd-v">❄️ A few flakes</span>
+        <span class="sd-mm muted small">1 mm</span><span class="sd-mm muted small">🌙 snow guns</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Sun 29</span>
+        <span class="sd-v">Cold, dry</span>
+        <span class="sd-mm muted small">🌙 snow guns</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Mon 30</span>
+        <span class="sd-v">Cold, dry</span>
+        <span class="sd-mm muted small">🌙 snow guns</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Tue 1</span>
+        <span class="sd-v">Cold, dry</span>
+        <span class="sd-mm muted small">🌙 snow guns</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Wed 2</span>
+        <span class="sd-v">Mild, dry</span>
+        <span class="sd-mm muted small">🌗 snow guns only in hollows</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Thu 3</span>
+        <span class="sd-v">Mild, dry</span>
+        <span class="sd-mm muted small">🌗 snow guns only in hollows</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Fri 4</span>
+        <span class="sd-v">Dry</span>
+        <span class="sd-mm muted small">🌗 snow guns only in hollows</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Sat 5</span>
+        <span class="sd-v">Cold, dry</span>
+        <span class="sd-mm muted small">🌙 snow guns</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Sun 6</span>
+        <span class="sd-v">Cold, dry</span>
+        <span class="sd-mm muted small">🌙 snow guns</span>
+      </div>
+    
+      <div class="syn-day v-dry">
+        <span class="sd-day">Mon 7</span>
+        <span class="sd-v">Dry</span>
+        <span class="sd-mm muted small">🌗 snow guns only in hollows</span>
+      </div>
+    
+    </div>
+  </div>
+  <details class="tech syn-tech"><summary>🔬 The numbers for experts</summary>
+  <div class="scroll">
+  <table class="syn">
+    <tr><th>Day</th><th>Pattern</th><th>T 1.500 m<br><small>ECMWF / GFS</small></th><th>Flow</th><th>For snow</th></tr>
+    
+    <tr><td>Sat 28</td><td>cold outbreak from the north-east</td>
+      <td class="num">-2 / -2 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-favorevole">favourable</span></td></tr>
+    
+    <tr><td>Sun 29</td><td>dry weather</td>
+      <td class="num">+0 / +0 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-favorevole">favourable</span></td></tr>
+    
+    <tr><td>Mon 30</td><td>dry weather</td>
+      <td class="num">-1 / -2 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-favorevole">favourable</span></td></tr>
+    
+    <tr><td>Tue 1</td><td>dry weather</td>
+      <td class="num">+0 / -1 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-favorevole">favourable</span></td></tr>
+    
+    <tr><td>Wed 2</td><td>dry weather</td>
+      <td class="num">+3 / +4 °C</td>
+      <td>SE</td>
+      <td><span class="tag t-sfavorevole">unfavourable</span></td></tr>
+    
+    <tr><td>Thu 3</td><td>dry weather</td>
+      <td class="num">+2 / +4 °C</td>
+      <td>SW/S</td>
+      <td><span class="tag t-sfavorevole">unfavourable</span></td></tr>
+    
+    <tr><td>Fri 4</td><td>dry weather</td>
+      <td class="num">-2 / -3 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-marginale">borderline</span></td></tr>
+    
+    <tr><td>Sat 5</td><td>dry weather</td>
+      <td class="num">-3 / -1 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-favorevole">favourable</span></td></tr>
+    
+    <tr><td>Sun 6</td><td>dry weather</td>
+      <td class="num">+2 / +0 °C</td>
+      <td>NE/E</td>
+      <td><span class="tag t-favorevole">favourable</span></td></tr>
+    
+    <tr><td>Mon 7</td><td>dry weather</td>
+      <td class="num">+4 / -2 °C</td>
+      <td>NW/N</td>
+      <td><span class="tag t-marginale">borderline</span></td></tr>
+    
+  </table>
+  </div></details>
+</section>
+
+<section class="wrap trend-sec" id="tendenza">
+  <p class="kicker-dark">2-week outlook and beyond</p>
+  <h2>❄️ Strongest signal for snow down to the resorts: around Saturday 12 December (33% of scenarios)</h2>
+  <p class="muted">8 models and 297 scenarios. The first 5 days come from our altitude-by-altitude calculation, the same numbers as the resorts; further ahead we count how many scenarios out of 100 see snow or cold. <a href="../en/come-funziona/">Explained simply →</a></p>
+  <div class="phases">
+  
+    <div class="phase pc">
+      <span class="pc-when">Next 5 days · Sat 28 – Wed 2</span>
+      <div class="pc-top"><span class="pc-emoji" aria-hidden="true">🌨️</span><b class="pc-head">A dusting on the summits</b></div>
+      <span class="pc-tag pc-cold">Cold around Saturday 28 November</span>
+      
+      <ul class="pc-rows">
+        <li><span>🏔️ At the top <small>Monte Cimone 2165 m</small></span><b>1 cm</b></li>
+        <li><span>🎿 At the resorts <small>Passo del Lupo 1550 m</small></span><b>1 cm</b></li>
+        <li><span>❄️ Snow level</span><b>1000 m</b></li>
+      </ul>
+      <p class="pc-foot">hour-by-hour physical calculation</p>
+      
+      
+    </div>
+  
+    <div class="phase pc">
+      <span class="pc-when">Days 6 to 10 · Thu 3 – Mon 7</span>
+      <div class="pc-top"><span class="pc-emoji" aria-hidden="true">🥶</span><b class="pc-head">Real cold: possible</b></div>
+      <span class="pc-tag pc-cold">Cold around Saturday 5 December</span>
+      
+      <ul class="pc-bars">
+        
+        <li><span>Snow at the resorts</span><i class="pc-bar b-low"><em style="width:6%"></em></i><b>6 in 100</b></li>
+        
+        <li><span>Snow up high</span><i class="pc-bar b-top"><em style="width:7%"></em></i><b>7 in 100</b></li>
+        
+        <li><span>Real cold</span><i class="pc-bar b-cold"><em style="width:45%"></em></i><b>45 in 100</b></li>
+        
+      </ul>
+      <p class="pc-foot">🌡️ +1 °C at 1,500 m · still uncertain</p>
+      
+      <details class="ph-models"><summary>Model by model</summary>
+        <table><tr><th></th><th>Snow</th><th>Cold</th><th>°C</th></tr>
+        <tr><td><i style="background:#0f2236"></i>ECMWF IFS</td><td><b>8%</b></td><td>34%</td><td>+1</td></tr><tr><td><i style="background:#475569"></i>ECMWF AIFS</td><td><b>6%</b></td><td>27%</td><td>+2</td></tr><tr><td><i style="background:#dc2626"></i>GFS</td><td><b>5%</b></td><td>26%</td><td>+1</td></tr><tr><td><i style="background:#ea580c"></i>GEM</td><td><b>5%</b></td><td>19%</td><td>+3</td></tr><tr><td><i style="background:#7c3aed"></i>WeatherNext 2</td><td><b>11%</b></td><td>40%</td><td>+1</td></tr><tr><td><i style="background:#16a34a"></i>ICON</td><td><b>0%</b></td><td>29%</td><td>+2</td></tr><tr><td><i style="background:#0891b2"></i>UK Met Office</td><td><b>2%</b></td><td>90%</td><td>-1</td></tr>
+        </table></details>
+    </div>
+  
+    <div class="phase pc">
+      <span class="pc-when">Days 11 to 15 · Tue 8 – Sat 12</span>
+      <div class="pc-top"><span class="pc-emoji" aria-hidden="true">🥶</span><b class="pc-head">Real cold: possible</b></div>
+      <span class="pc-tag pc-cold">Cold around Friday 11 December</span>
+      
+      <ul class="pc-bars">
+        
+        <li><span>Snow at the resorts</span><i class="pc-bar b-low"><em style="width:19%"></em></i><b>19 in 100</b></li>
+        
+        <li><span>Snow up high</span><i class="pc-bar b-top"><em style="width:30%"></em></i><b>30 in 100</b></li>
+        
+        <li><span>Real cold</span><i class="pc-bar b-cold"><em style="width:46%"></em></i><b>46 in 100</b></li>
+        
+      </ul>
+      <p class="pc-foot">🌡️ 0 °C at 1,500 m · still uncertain</p>
+      
+      <details class="ph-models"><summary>Model by model</summary>
+        <table><tr><th></th><th>Snow</th><th>Cold</th><th>°C</th></tr>
+        <tr><td><i style="background:#0f2236"></i>ECMWF IFS</td><td><b>31%</b></td><td>46%</td><td>-0</td></tr><tr><td><i style="background:#475569"></i>ECMWF AIFS</td><td><b>35%</b></td><td>48%</td><td>+0</td></tr><tr><td><i style="background:#dc2626"></i>GFS</td><td><b>29%</b></td><td>41%</td><td>-0</td></tr><tr><td><i style="background:#ea580c"></i>GEM</td><td><b>28%</b></td><td>17%</td><td>+2</td></tr><tr><td><i style="background:#7c3aed"></i>WeatherNext 2</td><td><b>15%</b></td><td>36%</td><td>+1</td></tr>
+        </table></details>
+    </div>
+  
+    <div class="phase pc">
+      <span class="pc-when">Days 16 to 30 · Sun 13 – Sun 27</span>
+      <div class="pc-top"><span class="pc-emoji" aria-hidden="true">🥶</span><b class="pc-head">Real cold: possible</b></div>
+      <span class="pc-tag pc-cold">Cold around Monday 14 December</span>
+      
+      <ul class="pc-bars">
+        
+        <li><span>Snow at the resorts</span><i class="pc-bar b-low"><em style="width:10%"></em></i><b>10 in 100</b></li>
+        
+        <li><span>Snow up high</span><i class="pc-bar b-top"><em style="width:26%"></em></i><b>26 in 100</b></li>
+        
+        <li><span>Real cold</span><i class="pc-bar b-cold"><em style="width:50%"></em></i><b>50 in 100</b></li>
+        
+      </ul>
+      <p class="pc-foot">🌡️ +1 °C at 1,500 m · still uncertain</p>
+      
+      <details class="ph-models"><summary>Model by model</summary>
+        <table><tr><th></th><th>Snow</th><th>Cold</th><th>°C</th></tr>
+        <tr><td><i style="background:#dc2626"></i>GFS</td><td><b>27%</b></td><td>31%</td><td>+1</td></tr><tr><td><i style="background:#ea580c"></i>GEM</td><td><b>27%</b></td><td>19%</td><td>+3</td></tr>
+        </table></details>
+    </div>
+  
+  </div>
+  <div class="bigpic"><h3>🌍 The big picture: Atlantic, Arctic and stratosphere</h3>
+    <p><b>The big picture is neutral: no decisive push.</b></p><p class="small">NAO near zero in the second week: no clear push towards cold or towards high pressure (12 negative, 41 positive scenarios out of 100).</p><p class="small">Polar vortex near normal (26 m/s): no particular signal from the stratosphere.</p>
+    <p class="small muted">NAO and AO indices: NOAA Climate Prediction Center (GEFS ensemble). Polar vortex: wind at 10 hPa along 60°N, from GFS.</p></div>
+  <p class="small">🎲 What does “scenarios out of 100” mean? <a href="../en/come-funziona/">How forecasts work, explained simply →</a></p>
+  <div class="syn-card trend-chart"><svg viewBox="0 0 900 250" class="syn-chart" role="img" aria-label="Temperature trend at 1,500 m"><rect x="30" y="91.4" width="840" height="70.6" fill="#dbeafe" opacity=".7"/><line x1="30" x2="870" y1="91.4" y2="91.4" stroke="#2563eb" stroke-width="1.5"/><text x="34" y="105.4" class="lbl snow">❄ snow down to resorts below 0 °C</text><line x1="30" x2="870" y1="91.4" y2="91.4" stroke="#94a3b8" stroke-dasharray="3 4"/><polygon points="30.0,81.5 59.0,61.7 87.9,69.2 116.9,68.8 145.9,44.8 174.8,27.9 203.8,30.2 232.8,45.6 261.7,42.7 290.7,47.0 319.7,42.3 348.6,41.4 377.6,45.2 406.6,46.9 435.5,41.4 464.5,42.7 493.4,37.5 522.4,29.9 551.4,34.1 580.3,32.7 609.3,35.5 638.3,26.9 667.2,41.4 696.2,23.7 725.2,25.5 754.1,20.0 783.1,26.7 812.1,35.4 841.0,45.9 870.0,30.6 870.0,111.9 841.0,112.2 812.1,107.3 783.1,114.7 754.1,103.4 725.2,103.3 696.2,104.1 667.2,106.4 638.3,115.4 609.3,125.5 580.3,126.7 551.4,126.9 522.4,134.0 493.4,124.6 464.5,130.5 435.5,148.2 406.6,144.9 377.6,132.1 348.6,138.9 319.7,147.8 290.7,154.0 261.7,144.7 232.8,134.3 203.8,113.3 174.8,108.2 145.9,119.8 116.9,126.6 87.9,111.3 59.0,104.5 30.0,107.0" fill="#0f2236" opacity=".09"/><rect x="450.0" y="6" width="420.0" height="156" fill="#fff" opacity=".45"/><text x="456.0" y="20" class="lbl">GFS and GEM only</text><polyline points="30.0,103.5 59.0,92.7 87.9,99.2 116.9,94.4 145.9,68.1 174.8,67.3 203.8,88.9 232.8,98.5 261.7,90.9 290.7,85.1 319.7,83.7 348.6,87.4 377.6,95.7 406.6,100.3 435.5,96.7" fill="none" stroke="#0f2236" stroke-width="2.6" stroke-linejoin="round" opacity="1"/><polyline points="30.0,102.3 59.0,85.7 87.9,89.7 116.9,91.8 145.9,65.7 174.8,50.6 203.8,67.9 232.8,82.5 261.7,85.2 290.7,87.3 319.7,86.3 348.6,89.7 377.6,90.2 406.6,96.1 435.5,91.1" fill="none" stroke="#475569" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><polyline points="30.0,83.5 59.0,64.3 87.9,74.6 116.9,82.8 145.9,68.6 174.8,62.0 203.8,73.1 232.8,88.6 261.7,95.0 290.7,94.8 319.7,92.7 348.6,92.4 377.6,90.7 406.6,92.2 435.5,90.3 464.5,89.4 493.4,91.8 522.4,94.1 551.4,93.6 580.3,90.0 609.3,81.6 638.3,80.6 667.2,80.3 696.2,82.4 725.2,81.3 754.1,77.1 783.1,77.2 812.1,81.4 841.0,84.0 870.0,81.9" fill="none" stroke="#dc2626" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><polyline points="30.0,86.4 59.0,77.4 87.9,78.8 116.9,78.7 145.9,59.9 174.8,47.3 203.8,65.0 232.8,78.8 261.7,80.0 290.7,76.5 319.7,73.5 348.6,68.6 377.6,77.1 406.6,82.5 435.5,83.5 464.5,79.2 493.4,76.7 522.4,72.2 551.4,68.9 580.3,71.0 609.3,74.4 638.3,65.2 667.2,60.0 696.2,60.9 725.2,62.4 754.1,65.0 783.1,63.2 812.1,66.3 841.0,67.4 870.0,65.4" fill="none" stroke="#ea580c" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><polyline points="30.0,104.6 59.0,88.8 87.9,94.6 116.9,98.9 145.9,73.3 174.8,60.7 203.8,78.7 232.8,98.4 261.7,99.8 290.7,93.9 319.7,85.4 348.6,83.5 377.6,82.9 406.6,82.9 435.5,84.9 464.5,83.6" fill="none" stroke="#7c3aed" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><polyline points="30.0,97.6 59.0,98.7 87.9,104.8 116.9,108.1 145.9,86.3 174.8,69.8 203.8,76.9 232.8,82.7" fill="none" stroke="#16a34a" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><polyline points="30.0,95.5 59.0,100.2 87.9,108.2 116.9,121.9 145.9,114.9 174.8,99.7 203.8,102.6 232.8,105.1 261.7,104.3 290.7,100.8 319.7,113.9" fill="none" stroke="#0891b2" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><polyline points="30.0,100.3 59.0,96.7 87.9,100.2 116.9,100.2 145.9,75.9 174.8,73.0" fill="none" stroke="#be185d" stroke-width="1.6" stroke-linejoin="round" opacity="0.85"/><rect x="21.0" y="197.3" width="18.0" height="4.7" fill="#2563eb"/><rect x="21.0" y="197.2" width="18.0" height="0.1" fill="#60a5fa"/><rect x="21.0" y="183.1" width="18.0" height="14.1" fill="#a5b4fc"/><rect x="21.0" y="172.0" width="18.0" height="11.1" fill="#cbd5e1"/><text x="30.0" y="244" text-anchor="middle" class="day">Sat 28</text><rect x="50.0" y="199.1" width="18.0" height="2.9" fill="#a5b4fc"/><rect x="50.0" y="172.0" width="18.0" height="27.1" fill="#cbd5e1"/><rect x="79.0" y="201.8" width="18.0" height="0.2" fill="#2563eb"/><rect x="79.0" y="201.7" width="18.0" height="0.1" fill="#60a5fa"/><rect x="79.0" y="192.2" width="18.0" height="9.5" fill="#a5b4fc"/><rect x="79.0" y="172.0" width="18.0" height="20.2" fill="#cbd5e1"/><rect x="107.9" y="190.8" width="18.0" height="11.2" fill="#a5b4fc"/><rect x="107.9" y="172.1" width="18.0" height="18.6" fill="#cbd5e1"/><rect x="107.9" y="172.0" width="18.0" height="0.1" fill="#fbbf24"/><rect x="136.9" y="199.2" width="18.0" height="2.8" fill="#a5b4fc"/><rect x="136.9" y="183.3" width="18.0" height="15.9" fill="#cbd5e1"/><rect x="136.9" y="172.0" width="18.0" height="11.3" fill="#fbbf24"/><text x="145.9" y="244" text-anchor="middle" class="day">Wed 2</text><rect x="165.8" y="201.9" width="18.0" height="0.1" fill="#2563eb"/><rect x="165.8" y="201.6" width="18.0" height="0.4" fill="#60a5fa"/><rect x="165.8" y="199.8" width="18.0" height="1.7" fill="#a5b4fc"/><rect x="165.8" y="190.1" width="18.0" height="9.7" fill="#cbd5e1"/><rect x="165.8" y="172.0" width="18.0" height="18.1" fill="#fbbf24"/><rect x="194.8" y="201.0" width="18.0" height="1.0" fill="#2563eb"/><rect x="194.8" y="191.6" width="18.0" height="9.5" fill="#a5b4fc"/><rect x="194.8" y="180.2" width="18.0" height="11.4" fill="#cbd5e1"/><rect x="194.8" y="172.0" width="18.0" height="8.2" fill="#fbbf24"/><rect x="223.8" y="199.2" width="18.0" height="2.8" fill="#2563eb"/><rect x="223.8" y="188.3" width="18.0" height="10.8" fill="#a5b4fc"/><rect x="223.8" y="178.4" width="18.0" height="9.9" fill="#cbd5e1"/><rect x="223.8" y="172.0" width="18.0" height="6.4" fill="#fbbf24"/><rect x="252.7" y="199.2" width="18.0" height="2.8" fill="#2563eb"/><rect x="252.7" y="199.1" width="18.0" height="0.1" fill="#60a5fa"/><rect x="252.7" y="188.9" width="18.0" height="10.2" fill="#a5b4fc"/><rect x="252.7" y="179.8" width="18.0" height="9.1" fill="#cbd5e1"/><rect x="252.7" y="172.0" width="18.0" height="7.8" fill="#fbbf24"/><text x="261.7" y="244" text-anchor="middle" class="day">Sun 6</text><rect x="281.7" y="200.1" width="18.0" height="1.9" fill="#2563eb"/><rect x="281.7" y="199.3" width="18.0" height="0.9" fill="#60a5fa"/><rect x="281.7" y="198.8" width="18.0" height="0.5" fill="#94a3b8"/><rect x="281.7" y="189.3" width="18.0" height="9.4" fill="#a5b4fc"/><rect x="281.7" y="179.5" width="18.0" height="9.9" fill="#cbd5e1"/><rect x="281.7" y="172.0" width="18.0" height="7.5" fill="#fbbf24"/><rect x="310.7" y="198.6" width="18.0" height="3.4" fill="#2563eb"/><rect x="310.7" y="196.0" width="18.0" height="2.6" fill="#60a5fa"/><rect x="310.7" y="194.4" width="18.0" height="1.6" fill="#94a3b8"/><rect x="310.7" y="187.8" width="18.0" height="6.6" fill="#a5b4fc"/><rect x="310.7" y="178.9" width="18.0" height="8.9" fill="#cbd5e1"/><rect x="310.7" y="172.0" width="18.0" height="6.9" fill="#fbbf24"/><rect x="339.6" y="196.4" width="18.0" height="5.6" fill="#2563eb"/><rect x="339.6" y="192.5" width="18.0" height="3.9" fill="#60a5fa"/><rect x="339.6" y="191.6" width="18.0" height="0.9" fill="#94a3b8"/><rect x="339.6" y="185.1" width="18.0" height="6.5" fill="#a5b4fc"/><rect x="339.6" y="177.3" width="18.0" height="7.8" fill="#cbd5e1"/><rect x="339.6" y="172.0" width="18.0" height="5.3" fill="#fbbf24"/><rect x="368.6" y="195.4" width="18.0" height="6.6" fill="#2563eb"/><rect x="368.6" y="192.5" width="18.0" height="2.9" fill="#60a5fa"/><rect x="368.6" y="191.3" width="18.0" height="1.2" fill="#94a3b8"/><rect x="368.6" y="184.1" width="18.0" height="7.2" fill="#a5b4fc"/><rect x="368.6" y="176.2" width="18.0" height="7.9" fill="#cbd5e1"/><rect x="368.6" y="172.0" width="18.0" height="4.2" fill="#fbbf24"/><text x="377.6" y="244" text-anchor="middle" class="day">Thu 10</text><rect x="397.6" y="195.2" width="18.0" height="6.8" fill="#2563eb"/><rect x="397.6" y="192.6" width="18.0" height="2.6" fill="#60a5fa"/><rect x="397.6" y="190.5" width="18.0" height="2.0" fill="#94a3b8"/><rect x="397.6" y="181.7" width="18.0" height="8.8" fill="#a5b4fc"/><rect x="397.6" y="175.5" width="18.0" height="6.2" fill="#cbd5e1"/><rect x="397.6" y="172.0" width="18.0" height="3.5" fill="#fbbf24"/><rect x="426.5" y="195.8" width="18.0" height="6.2" fill="#2563eb"/><rect x="426.5" y="192.0" width="18.0" height="3.9" fill="#60a5fa"/><rect x="426.5" y="189.5" width="18.0" height="2.4" fill="#94a3b8"/><rect x="426.5" y="182.2" width="18.0" height="7.3" fill="#a5b4fc"/><rect x="426.5" y="176.3" width="18.0" height="5.9" fill="#cbd5e1"/><rect x="426.5" y="172.0" width="18.0" height="4.3" fill="#fbbf24"/><rect x="455.5" y="199.1" width="18.0" height="2.9" fill="#2563eb"/><rect x="455.5" y="193.6" width="18.0" height="5.5" fill="#60a5fa"/><rect x="455.5" y="190.9" width="18.0" height="2.7" fill="#94a3b8"/><rect x="455.5" y="185.0" width="18.0" height="5.9" fill="#a5b4fc"/><rect x="455.5" y="176.5" width="18.0" height="8.5" fill="#cbd5e1"/><rect x="455.5" y="172.0" width="18.0" height="4.5" fill="#fbbf24"/><rect x="484.5" y="198.6" width="18.0" height="3.4" fill="#2563eb"/><rect x="484.5" y="193.3" width="18.0" height="5.2" fill="#60a5fa"/><rect x="484.5" y="191.4" width="18.0" height="1.9" fill="#94a3b8"/><rect x="484.5" y="180.7" width="18.0" height="10.8" fill="#a5b4fc"/><rect x="484.5" y="174.9" width="18.0" height="5.8" fill="#cbd5e1"/><rect x="484.5" y="172.0" width="18.0" height="2.9" fill="#fbbf24"/><text x="493.4" y="244" text-anchor="middle" class="day">Mon 14</text><rect x="513.4" y="195.4" width="18.0" height="6.6" fill="#2563eb"/><rect x="513.4" y="192.0" width="18.0" height="3.4" fill="#60a5fa"/><rect x="513.4" y="189.6" width="18.0" height="2.4" fill="#94a3b8"/><rect x="513.4" y="182.3" width="18.0" height="7.3" fill="#a5b4fc"/><rect x="513.4" y="176.5" width="18.0" height="5.8" fill="#cbd5e1"/><rect x="513.4" y="172.0" width="18.0" height="4.5" fill="#fbbf24"/><rect x="542.4" y="197.0" width="18.0" height="5.0" fill="#2563eb"/><rect x="542.4" y="193.8" width="18.0" height="3.2" fill="#60a5fa"/><rect x="542.4" y="191.7" width="18.0" height="2.1" fill="#94a3b8"/><rect x="542.4" y="184.1" width="18.0" height="7.6" fill="#a5b4fc"/><rect x="542.4" y="177.5" width="18.0" height="6.5" fill="#cbd5e1"/><rect x="542.4" y="172.0" width="18.0" height="5.5" fill="#fbbf24"/><rect x="571.4" y="199.4" width="18.0" height="2.6" fill="#2563eb"/><rect x="571.4" y="194.9" width="18.0" height="4.5" fill="#60a5fa"/><rect x="571.4" y="190.9" width="18.0" height="3.9" fill="#94a3b8"/><rect x="571.4" y="182.0" width="18.0" height="8.9" fill="#a5b4fc"/><rect x="571.4" y="177.0" width="18.0" height="5.0" fill="#cbd5e1"/><rect x="571.4" y="172.0" width="18.0" height="5.0" fill="#fbbf24"/><rect x="600.3" y="197.3" width="18.0" height="4.7" fill="#2563eb"/><rect x="600.3" y="194.6" width="18.0" height="2.7" fill="#60a5fa"/><rect x="600.3" y="189.1" width="18.0" height="5.5" fill="#94a3b8"/><rect x="600.3" y="182.8" width="18.0" height="6.3" fill="#a5b4fc"/><rect x="600.3" y="180.4" width="18.0" height="2.4" fill="#cbd5e1"/><rect x="600.3" y="172.0" width="18.0" height="8.4" fill="#fbbf24"/><text x="609.3" y="244" text-anchor="middle" class="day">Fri 18</text><rect x="629.3" y="197.3" width="18.0" height="4.7" fill="#2563eb"/><rect x="629.3" y="192.8" width="18.0" height="4.5" fill="#60a5fa"/><rect x="629.3" y="188.0" width="18.0" height="4.8" fill="#94a3b8"/><rect x="629.3" y="182.3" width="18.0" height="5.8" fill="#a5b4fc"/><rect x="629.3" y="177.8" width="18.0" height="4.5" fill="#cbd5e1"/><rect x="629.3" y="172.0" width="18.0" height="5.8" fill="#fbbf24"/><rect x="658.3" y="200.2" width="18.0" height="1.8" fill="#2563eb"/><rect x="658.3" y="195.4" width="18.0" height="4.7" fill="#60a5fa"/><rect x="658.3" y="189.3" width="18.0" height="6.1" fill="#94a3b8"/><rect x="658.3" y="183.8" width="18.0" height="5.5" fill="#a5b4fc"/><rect x="658.3" y="176.5" width="18.0" height="7.4" fill="#cbd5e1"/><rect x="658.3" y="172.0" width="18.0" height="4.5" fill="#fbbf24"/><rect x="687.2" y="200.4" width="18.0" height="1.6" fill="#2563eb"/><rect x="687.2" y="195.2" width="18.0" height="5.3" fill="#60a5fa"/><rect x="687.2" y="190.4" width="18.0" height="4.8" fill="#94a3b8"/><rect x="687.2" y="186.2" width="18.0" height="4.2" fill="#a5b4fc"/><rect x="687.2" y="174.1" width="18.0" height="12.1" fill="#cbd5e1"/><rect x="687.2" y="172.0" width="18.0" height="2.1" fill="#fbbf24"/><rect x="716.2" y="200.2" width="18.0" height="1.8" fill="#2563eb"/><rect x="716.2" y="194.9" width="18.0" height="5.3" fill="#60a5fa"/><rect x="716.2" y="191.7" width="18.0" height="3.2" fill="#94a3b8"/><rect x="716.2" y="187.8" width="18.0" height="3.9" fill="#a5b4fc"/><rect x="716.2" y="177.5" width="18.0" height="10.3" fill="#cbd5e1"/><rect x="716.2" y="172.0" width="18.0" height="5.5" fill="#fbbf24"/><text x="725.2" y="244" text-anchor="middle" class="day">Tue 22</text><rect x="745.2" y="198.3" width="18.0" height="3.7" fill="#2563eb"/><rect x="745.2" y="191.7" width="18.0" height="6.6" fill="#60a5fa"/><rect x="745.2" y="188.0" width="18.0" height="3.7" fill="#94a3b8"/><rect x="745.2" y="185.1" width="18.0" height="2.9" fill="#a5b4fc"/><rect x="745.2" y="178.6" width="18.0" height="6.6" fill="#cbd5e1"/><rect x="745.2" y="172.0" width="18.0" height="6.6" fill="#fbbf24"/><rect x="774.1" y="200.7" width="18.0" height="1.3" fill="#2563eb"/><rect x="774.1" y="195.2" width="18.0" height="5.5" fill="#60a5fa"/><rect x="774.1" y="189.9" width="18.0" height="5.3" fill="#94a3b8"/><rect x="774.1" y="186.7" width="18.0" height="3.2" fill="#a5b4fc"/><rect x="774.1" y="178.3" width="18.0" height="8.4" fill="#cbd5e1"/><rect x="774.1" y="172.0" width="18.0" height="6.3" fill="#fbbf24"/><rect x="803.1" y="200.7" width="18.0" height="1.3" fill="#2563eb"/><rect x="803.1" y="193.6" width="18.0" height="7.1" fill="#60a5fa"/><rect x="803.1" y="190.6" width="18.0" height="3.0" fill="#94a3b8"/><rect x="803.1" y="188.0" width="18.0" height="2.6" fill="#a5b4fc"/><rect x="803.1" y="174.4" width="18.0" height="13.6" fill="#cbd5e1"/><rect x="803.1" y="172.0" width="18.0" height="2.4" fill="#fbbf24"/><rect x="832.1" y="201.2" width="18.0" height="0.8" fill="#2563eb"/><rect x="832.1" y="198.3" width="18.0" height="2.9" fill="#60a5fa"/><rect x="832.1" y="193.3" width="18.0" height="5.0" fill="#94a3b8"/><rect x="832.1" y="187.8" width="18.0" height="5.5" fill="#a5b4fc"/><rect x="832.1" y="176.8" width="18.0" height="11.0" fill="#cbd5e1"/><rect x="832.1" y="172.0" width="18.0" height="4.8" fill="#fbbf24"/><text x="841.0" y="244" text-anchor="middle" class="day">Sat 26</text><rect x="861.0" y="199.4" width="18.0" height="2.6" fill="#2563eb"/><rect x="861.0" y="192.0" width="18.0" height="7.4" fill="#60a5fa"/><rect x="861.0" y="187.5" width="18.0" height="4.5" fill="#94a3b8"/><rect x="861.0" y="184.1" width="18.0" height="3.4" fill="#a5b4fc"/><rect x="861.0" y="177.0" width="18.0" height="7.1" fill="#cbd5e1"/><rect x="861.0" y="172.0" width="18.0" height="5.0" fill="#fbbf24"/></svg>
+    <p class="legend"><span><i style="background:#0f2236;height:3px"></i>ECMWF IFS</span><span><i style="background:#475569;height:3px"></i>ECMWF AIFS</span><span><i style="background:#dc2626;height:3px"></i>GFS</span><span><i style="background:#ea580c;height:3px"></i>GEM</span><span><i style="background:#7c3aed;height:3px"></i>WeatherNext 2</span><span><i style="background:#16a34a;height:3px"></i>ICON</span><span><i style="background:#0891b2;height:3px"></i>UK Met Office</span><span><i style="background:#be185d;height:3px"></i>ICON-CH2</span></p>
+    <p class="legend"><span><i style="background:#2563eb"></i>Snow down to the resorts</span><span><i style="background:#60a5fa"></i>Snow up high</span><span><i style="background:#94a3b8"></i>Unsettled, snow only at high altitude</span><span><i style="background:#a5b4fc"></i>Cold and dry</span><span><i style="background:#cbd5e1"></i>Dry, temperatures around normal</span><span><i style="background:#fbbf24"></i>Dry and mild</span></p>
+    <p class="muted small">Each line is one model&#39;s central scenario for temperature at 1,500 m; the grey band covers nearly all scenarios. The bars at the bottom show, day by day, how the scenarios split between weather types. ICON, UK Met Office and MeteoSwiss give surface temperature calculated at 1,500 m.</p>
+  </div>
+  <p class="art-link"><a class="btn small" href="../en/tendenze/2026-11-28/">📰 Read the full analysis: Snow needs patience, but winter shows up around Saturday 28 November</a></p>
+</section>
+
+
+
+
+<section class="wrap promo">
+  <div>
+    <h2>Working in the mountains?</h2>
+    <p>Rentals, ski schools, mountain huts and hotels: reach people who check the snow before they set off. Sponsor spots for each resort, from just a few euros a day.</p>
+  </div>
+  <span class="promo-btns"><a class="btn" href="../en/sponsor/">See the spots</a> <a class="btn ghost" href="../en/widget/">🧩 Free widget for your website</a></span>
+</section>
+
+</main>
+<footer class="foot">
+  <div class="wrap">
+    <p class="foot-brand"><img src="../static/brand/mark.svg" alt="" width="44" height="44"><span><b>Crinale</b><br><small>Snow forecasts for the Tuscan-Emilian Apennines, altitude by altitude</small></span></p>
+    <p class="follow">Follow us:
+      <a class="btn small tg" href="https://t.me/crinaleappennino" rel="noopener">Telegram</a>
+      <a class="btn small wa" href="https://whatsapp.com/channel/0029Vb9pWxjGZNCmNNe7Q32v" rel="noopener">WhatsApp</a></p>
+    <p><strong>Crinale</strong> · Snow forecasts for the Tuscan-Emilian Apennines, altitude by altitude. Updated 28/11/2026 16:04.</p>
+    <p class="small">Forecasts produced automatically from open-data numerical models (ItaliaMeteo-ARPAE ICON-2I, MeteoSwiss ICON-CH, DWD ICON, Météo-France AROME, ECMWF, NOAA GFS) via <a href="https://open-meteo.com/">Open-Meteo</a>, CC BY 4.0 licence. They are indicative estimates and do not replace official bulletins or the lift operators' announcements, which alone are authoritative on openings, slopes and snow cover: for warnings and safety always check <a href="https://www.cfr.toscana.it/">Tuscany Civil Protection</a>, <a href="https://allertameteo.regione.emilia-romagna.it/">Emilia-Romagna Weather Alerts</a> and the <a href="https://meteomont.carabinieri.it/">Meteomont</a> avalanche bulletin.</p>
+    <p class="small friends">Friends of the site: <a href="https://www.meteostorm.it/" rel="noopener">Meteostorm</a> (Liguria and thunderstorms)</p>
+    <p class="small">Real-time observations: <a href="https://www.cfr.toscana.it/">CFR Toscana</a>, <a href="https://www.arpae.it/">Arpae Emilia-Romagna</a> (CC BY 4.0) and <a href="https://www.meteonetwork.it/">MeteoNetwork</a> (CC BY 4.0), stations <a href="https://www.meteonetwork.eu/it/weather-station/tsc238">Val di Luce</a> and <a href="https://www.meteonetwork.eu/it/weather-station/tsc264">Rifugio Le Terrazze</a>.</p>
+    <p class="small"><a href="../en/privacy/">Privacy</a> · <a href="../en/metodo/">Method and sources</a> · <a href="../en/come-funziona/">How forecasts work</a> · <a href="../en/pagella/">Report card</a> · <a href="../en/widget/">Free widget</a> · <a href="../en/inverni/">Winters through the years</a> · <a href="../en/segnala-neve/">Report the snow</a> · <a href="../feed.xml">RSS</a> · <a href="../api/v1/forecast.json">JSON data</a> · <a href="mailto:info@crinaleappennino.it">info@crinaleappennino.it</a></p>
+  </div>
+</footer>
+<script>
+(function () {
+  const bar = document.getElementById("appbar");
+  if (!bar) return;
+  const installed = window.matchMedia("(display-mode: standalone)").matches || navigator.standalone;
+  if (installed) return;
+  const ua = navigator.userAgent;
+  const mobile = /iPhone|iPad|iPod|Android/.test(ua);
+  if (!mobile) return;
+  let visits = 1, closedAt = 0;
+  try {
+    visits = +localStorage.getItem("ab-visits") || 0;
+    if (!sessionStorage.getItem("ab-s")) { visits++; localStorage.setItem("ab-visits", visits); sessionStorage.setItem("ab-s", "1"); }
+    closedAt = +localStorage.getItem("ab-closed-at") || (localStorage.getItem("appbar-closed") === "1" ? Date.now() : 0);
+  } catch (e) {}
+  // dalla seconda visita; se chiuso, ripropone dopo 30 giorni
+  if (visits < 2 || (closedAt && Date.now() - closedAt < 30 * 864e5)) return;
+  const inapp = /FBAN|FBAV|Instagram|Line\/|Telegram|WhatsApp|GSA\//.test(ua);
+  bar.dataset.os = inapp ? "inapp" : /iPhone|iPad|iPod/.test(ua) ? "ios" : "android";
+  bar.hidden = false;
+  document.getElementById("appbar-close").addEventListener("click", () => {
+    bar.hidden = true;
+    try { localStorage.setItem("ab-closed-at", Date.now()); localStorage.removeItem("appbar-closed"); } catch (e) {}
+  });
+})();
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("../sw.js").catch(() => {});
+}
+let deferredInstall = null;
+window.addEventListener("beforeinstallprompt", e => {
+  e.preventDefault(); deferredInstall = e;
+  document.querySelectorAll("#install-btn, .install-btn").forEach(b => b.hidden = false);
+  const ab = document.getElementById("appbar"); if (ab) ab.classList.add("can-install");
+});
+document.addEventListener("click", async e => {
+  if ((e.target.id === "install-btn" || e.target.classList.contains("install-btn")) && deferredInstall) {
+    deferredInstall.prompt(); await deferredInstall.userChoice; deferredInstall = null; e.target.hidden = true;
+  }
+  if (e.target.dataset && e.target.dataset.save && navigator.serviceWorker && navigator.serviceWorker.controller) {
+    const urls = JSON.parse(e.target.dataset.save).map(p => new URL(p, location.href).href);
+    navigator.serviceWorker.controller.postMessage({ type: "save", urls });
+    e.target.textContent = "Saved on your phone \u2713"; e.target.disabled = true;
+  }
+});
+</script>
+</body>
+</html>
